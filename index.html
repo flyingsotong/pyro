@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+gre<!DOCTYPE html>
 <html lang="en" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
@@ -147,15 +147,47 @@ body { font-family: 'Montserrat', sans-serif; }
         .services-gradient {
             background: #7743DB;
             background: linear-gradient(to top, #7743DB, #222222);
+            position: relative;
+            overflow: hidden;
+        }
+        .services-gradient::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(119, 67, 219, 0.3) 0%, rgba(34, 34, 34, 0) 70%);
+            animation: rotateGradient 15s linear infinite;
+            opacity: 0.5;
+            z-index: 0;
+        }
+        @keyframes rotateGradient {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .service-card {
+            background-color: #2A2A2A; /* A darker gray to blend more */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* subtle white border */
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 2rem; /* p-8 */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* subtle shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; /* Ensure content is above pseudo-element */
+            z-index: 1; /* Ensure content is above pseudo-element */
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
         }
         .fade-in-element {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(20px) scale(0.95);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
         .fade-in-element.is-visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
     </style>
 </head>
@@ -220,17 +252,17 @@ body { font-family: 'Montserrat', sans-serif; }
 
             <div class="max-w-3xl">
                 <!-- Service 1: AI Strategy & Roadmapping -->
-                <div class="mb-12 fade-in-element">
+                <div class="mb-12 fade-in-element service-card">
                     <h3 class="text-3xl font-bold text-white mb-4">1. AI Strategy & Roadmapping</h3>
                     <p class="text-lg">We'll help you pinpoint where AI can transform your business and craft a clear, actionable roadmap to get you there.</p>
                 </div>
                 <!-- Service 2: Team AI Enablement -->
-                <div class="mb-12 fade-in-element">
+                <div class="mb-12 fade-in-element service-card">
                     <h3 class="text-3xl font-bold text-white mb-4">2. Team AI Enablement</h3>
                     <p class="text-lg">We'll equip your team with the practical AI skills and knowledge they need to thrive and innovate.</p>
                 </div>
                 <!-- Service 3: Bespoke AI Development -->
-                <div class="fade-in-element">
+                <div class="fade-in-element service-card">
                     <h3 class="text-3xl font-bold text-white mb-4">3. Bespoke AI Development</h3>
                     <p class="text-lg">Need a custom solution? We'll build tailored AI tools designed to solve your unique challenges and deliver real results.</p>
                 </div>
