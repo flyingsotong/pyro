@@ -10,13 +10,13 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <!-- Pre-compiled and Purged Tailwind CSS -->
     <style>
         /* TailwindCSS Base Styles (Preflight) */
         *,::before,::after { box-sizing: border-box; border-width: 0; border-style: solid; border-color: #e5e7eb }
-        html { line-height: 1.5; -webkit-text-size-adjust: 100%; -moz-tab-size: 4; tab-size: 4; font-family: 'Inter', sans-serif; }
+        html { line-height: 1.5; -webkit-text-size-adjust: 100%; -moz-tab-size: 4; tab-size: 4; font-family: 'Roboto', sans-serif; }
+body { font-family: 'Montserrat', sans-serif; }
         body { margin: 0; line-height: inherit; color: #ffffff; background-color: #1a1a1a; }
         h1,h2,h3,h4,p,a { margin: 0; padding: 0; }
         h1,h2,h3,h4 { font-size: inherit; font-weight: inherit }
@@ -34,9 +34,9 @@
 
         .bg-white { background-color: #fff; }
         .bg-white\/20 { background-color: rgba(255, 255, 255, 0.2); }
-        .bg-gray-dark { background-color: #1a1a1a; }
-        .bg-gray-dark-card { background-color: #2D2D2D; }
-        .bg-accent-purple-2 { background-color: #8A24FF; }
+        .bg-gray-dark { background-color: #222222; }
+        .bg-gray-dark-card { background-color: #333333; }
+        .bg-accent-purple-2 { background-color: #7743DB; }
         .border { border-width: 1px; }
         .border-white\/30 { border-color: rgba(255, 255, 255, 0.3); }
         .rounded-full { border-radius: 9999px; }
@@ -95,6 +95,17 @@
         .focus\:ring-2:focus { --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color); --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000); }
         .focus\:ring-white:focus { --tw-ring-color: #fff; }
 
+        /* Responsive Styles */
+        @media (max-width: 640px) {
+            .md\:text-6xl { font-size: 2.5rem; }
+            .md\:text-7xl { font-size: 3rem; }
+            .md\:grid-cols-2 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+            .md\:gap-20 { gap: 2rem; }
+            .md\:px-12 { padding-left: 1rem; padding-right: 1rem; }
+            .md\:py-40 { padding-top: 4rem; padding-bottom: 4rem; }
+            .md\:py-48 { padding-top: 6rem; padding-bottom: 6rem; }
+        }
+
         @media (min-width: 768px) {
             .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .md\:flex-row { flex-direction: row; }
@@ -123,15 +134,15 @@
         }
         .hero-gradient {
             background: #5E5DF0;
-            background: linear-gradient(to bottom, #5E5DF0, #1a1a1a);
+            background: linear-gradient(to bottom, #5E5DF0, #222222);
         }
         .footer-gradient {
-            background: #8A24FF;
-            background: linear-gradient(to bottom, #8A24FF, #000000 75%);
+            background: #7743DB;
+            background: linear-gradient(to bottom, #7743DB, #000000 75%);
         }
         .about-gradient {
-            background: #1a1a1a;
-            background: linear-gradient(to bottom, #1a1a1a, #8A24FF);
+            background: #222222;
+            background: linear-gradient(to bottom, #222222, #7743DB);
         }
         .fade-in-element {
             opacity: 0;
@@ -190,7 +201,7 @@
             <h1 class="text-4xl md:text-7xl font-extrabold tracking-tighter leading-tight mb-6">Stop juggling. Start building the consultancy you've always wanted.</h1>
             <p class="text-xl md:text-2xl font-bold tracking-tight max-w-3xl mb-4">Pyro is an advisory service for solo and boutique consultants in Singapore. Folks like you.</p>
             <p class="text-xl md:text-2xl font-bold tracking-tight max-w-3xl mb-10">We're consultants too. We'll help you use AI to automate your admin, reduce costs, amplify your expertise, and truly delight your clients.</p>
-            <a href="#book-a-call" class="inline-block bg-white text-black font-bold py-4 px-8 rounded-full text-lg glowing-button">
+            <a href="#book-a-call" class="inline-block bg-white text-black font-bold py-4 px-8 rounded-full text-lg glowing-button" aria-label="Book a free discovery call">
                 Book your free discovery call
             </a>
         </div>
@@ -293,7 +304,7 @@
                               class="w-full p-3 rounded-md bg-white/20 border border-white/30 placeholder-white/70 text-white font-bold"
                             ></textarea>
                           </div>
-                          <button type="submit" class="w-full bg-white text-black font-bold py-4 px-8 rounded-full text-lg glowing-button">Send</button>
+                          <button type="submit" class="w-full bg-white text-black font-bold py-4 px-8 rounded-full text-lg glowing-button" aria-label="Send message">Send</button>
                         </form>
                         <!-- Formspree Form End -->
                     </div>
