@@ -156,11 +156,13 @@ body {
     to { transform: rotate(360deg); }
 }
 .service-card {
-    background-color: #2A2A2A; /* A darker gray to blend more */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* subtle white border */
+    background-color: rgba(42, 42, 42, 0.5); /* Transparent background */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* More prominent, subtle white border */
     border-radius: 0.5rem; /* rounded-lg */
     padding: 2rem; /* p-8 */
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* subtle shadow */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    backdrop-filter: blur(10px); /* Glassmorphism blur effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative; /* Ensure content is above pseudo-element */
     z-index: 1; /* Ensure content is above pseudo-element */
