@@ -131,7 +131,8 @@ body {
     background: linear-gradient(to bottom, #7743DB, #000000 75%);
 }
 .about-gradient-blue {
-    background-color: #333333; /* Grey-ish tone */
+    background: #222222;
+    background: linear-gradient(to bottom, #222222, #7743DB);
 }
 .services-gradient {
     background: #7743DB;
