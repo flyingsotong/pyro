@@ -170,6 +170,8 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%; /* Make all cards same height */
+    overflow: hidden;
+    word-break: break-word;
 }
 .service-card:hover {
     transform: translateY(-5px);
