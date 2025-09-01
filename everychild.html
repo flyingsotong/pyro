@@ -256,7 +256,7 @@
             </div>
             <div class="mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center">
                 <div class="text-center sm:text-left">
-                    <p class="text-sm text-gray-500">&copy; 2025 EveryChild.SG. All rights reserved.</p>
+                    <p class="text-sm text-gray-500">&copy; <span id="copyright-year">2024</span> EveryChild.SG. All rights reserved.</p>
                     <p class="text-sm text-gray-500 mt-2">We use anonymized data to understand how people use our website. Email addresses are collected for newsletter subscriptions only.</p>
                 </div>
                 <div class="flex space-x-6 mt-4 sm:mt-0">
@@ -290,63 +290,62 @@
     </button>
 
     <script>
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
 
-                // On mobile, close the menu before scrolling
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
+                    // On mobile, close the menu before scrolling
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Back to Top Button Logic
+            const toTopButton = document.getElementById('to-top-button');
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) { // Show button after scrolling 300px
+                    toTopButton.classList.remove('hidden');
+                } else {
+                    toTopButton.classList.add('hidden');
                 }
+            });
 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
+            toTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
                     behavior: 'smooth'
                 });
             });
-        });
 
-        // Back to Top Button Logic
-        const toTopButton = document.getElementById('to-top-button');
+            // Survey Banner Logic
+            const surveyBanner = document.getElementById('survey-banner');
+            const closeSurveyBannerBtn = document.getElementById('close-survey-banner');
 
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) { // Show button after scrolling 300px
-                toTopButton.classList.remove('hidden');
-            } else {
-                toTopButton.classList.add('hidden');
+            if (surveyBanner && closeSurveyBannerBtn) {
+                closeSurveyBannerBtn.addEventListener('click', () => {
+                    surveyBanner.classList.add('hidden');
+                });
             }
+
+            // Dynamically update copyright year
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
         });
-
-        toTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Survey Banner Logic
-        const surveyBanner = document.getElementById('survey-banner');
-        const closeSurveyBannerBtn = document.getElementById('close-survey-banner');
-
-        if (surveyBanner && closeSurveyBannerBtn) {
-            closeSurveyBannerBtn.addEventListener('click', () => {
-                surveyBanner.classList.add('hidden');
-            });
-        }
     </script>
 
 </body>
 </html>
-
-
-
-
-
-

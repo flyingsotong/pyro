@@ -298,7 +298,7 @@
                 </div>
                 <!-- Right: Footer Text -->
                 <div class="text-right md:text-right mt-8 md:mt-0">
-                    <p>© 2024 Pyro Singapore</p>
+                    <p>© <span id="copyright-year">2024</span> Pyro Singapore</p>
                     <p>All rights reserved</p>
                     <p>alan@pyro.sg</p>
                     <p class="mt-4">Made in 🇸🇬</p>
@@ -330,6 +330,9 @@
             // Select all elements you want to animate
             const elementsToAnimate = document.querySelectorAll('.fade-in-element');
             elementsToAnimate.forEach(el => observer.observe(el));
+
+            // Dynamically update copyright year
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
         });
     </script>
 </body>
