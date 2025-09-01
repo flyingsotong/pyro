@@ -41,6 +41,7 @@ img, video { max-width: 100%; height: auto; }
 .items-start { align-items: flex-start; }
 .justify-between { justify-content: space-between; }
 .gap-12 { gap: 3rem; }
+.gap-4 { gap: 1rem; }
 .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
 .p-3 { padding: 0.75rem; }
 .p-8 { padding: 2rem; }
@@ -56,6 +57,7 @@ img, video { max-width: 100%; height: auto; }
 .mb-8 { margin-bottom: 2rem; }
 .mb-10 { margin-bottom: 2.5rem; }
 .mb-20 { margin-bottom: 5rem; }
+.mt-1 { margin-top: 0.25rem; }
 .mt-4 { margin-top: 1rem; }
 .mt-6 { margin-top: 1.5rem; }
 .mt-8 { margin-top: 2rem; }
@@ -171,11 +173,15 @@ body {
     flex-direction: column;
     height: 100%; /* Make all cards same height */
     overflow: hidden;
-    word-break: break-word;
+    overflow-wrap: break-word;
 }
 .service-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+}
+.service-card ul {
+    list-style: disc inside;
+    padding-left: 0.5rem;
 }
 .fade-in-element {
     opacity: 0;
