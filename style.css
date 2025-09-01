@@ -167,6 +167,9 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative; /* Ensure content is above pseudo-element */
     z-index: 1; /* Ensure content is above pseudo-element */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Make all cards same height */
 }
 .service-card:hover {
     transform: translateY(-5px);
