@@ -13,23 +13,104 @@
     <meta property="og:url" content="https://www.pyro.sg/index.html">
     <meta property="og:title" content="Pyro: An AI consultancy for small businesses">
     <meta property="og:description" content="Pyro helps small businesses in Singapore automate admin and reduce costs with AI. We offer tailored AI strategies and development for solo and boutique consultants.">
-    <meta property="og:image" content="https://www.pyro.sg/social-share-image.jpg"> <!-- Placeholder, replace with actual image URL -->
+    <meta property="og:image" content="https://www.pyro.sg/social-share-image.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.pyro.sg/index.html">
     <meta property="twitter:title" content="Pyro: An AI consultancy for small businesses">
     <meta property="twitter:description" content="Pyro helps small businesses in Singapore automate admin and reduce costs with AI. We offer tailored AI strategies and development for solo and boutique consultants.">
-    <meta property="twitter:image" content="https://www.pyro.sg/social-share-image.jpg"> <!-- Placeholder, replace with actual image URL -->
+    <meta property="twitter:image" content="https://www.pyro.sg/social-share-image.jpg">
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="4df6c89a-3ef2-4803-9211-98368b62a79d"></script>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <!-- Umami Analytics -->
+    <script src="https://cloud.umami.is/script.js" data-website-id="4df6c89a-3ef2-4803-9211-98368b62a79d"></script>
+
+    <style>
+        /* Custom styles to complement Tailwind and achieve the desired look and feel */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a1a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        /* Gradient Backgrounds */
+        .hero-gradient {
+            background: radial-gradient(ellipse at 50% 10%, #1a237e 0%, #0a0a1a 50%);
+        }
+        .services-gradient {
+            background: radial-gradient(ellipse at 50% 0%, #0c0c24 0%, #0a0a1a 60%);
+        }
+        .about-gradient-blue {
+             background: radial-gradient(ellipse at 50% 100%, #1a237e 0%, #0a0a1a 50%);
+        }
+        .footer-gradient {
+            background: radial-gradient(ellipse at 50% 100%, #0c0c24 0%, #0a0a1a 60%);
+        }
+
+        /* Glowing Button Effect */
+        .glowing-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(76, 175, 80, 0); /* Subtle initial glow */
+        }
+        .glowing-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5), 0 0 30px rgba(52, 144, 220, 0.4);
+        }
+
+        /* Card styles with backdrop blur */
+        .service-card, .info-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card:hover, .info-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* Fade-in Animation on Scroll */
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition-delay: var(--delay, 0s);
+        }
+        .fade-in-element.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom scrollbar for a more integrated look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a3a9a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3c52c7;
+        }
+
+    </style>
 
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
@@ -56,39 +137,240 @@
       },
       "sameAs": [
         "https://www.linkedin.com/in/alansoon/"
-      ],
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday"
-        ],
-        "opens": "09:00",
-        "closes": "17:00"
-      }
+      ]
     }
     </script>
 </head>
-<body>
+<body class="antialiased">
 
     <!-- Header Section -->
-    <header class="hero-gradient py-24 md:py-48 px-6 md:px-12">
+    <header class="hero-gradient min-h-screen flex items-center py-24 md:py-32 px-6 md:px-12">
         <div class="container mx-auto max-w-screen-lg text-left">
-            <!-- SVG Logo Start -->
-            <div class="mb-8">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200" viewBox="118 108 257 150" preserveAspectRatio="xMidYMid meet" aria-label="Pyro Logo - AI Advisory for Consultants" role="img">
+            <div class="mb-8 fade-in-element" style="--delay: 0.1s;">
+                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="150" height="150" viewBox="118 108 257 150" aria-label="Pyro Logo" role="img">
+                    <defs>
+                        <clipPath id="clip1"><path d="M 137 140 L 200 140 L 200 258.046875 L 137 258.046875 Z M 137 140 "/></clipPath>
+                        <clipPath id="clip2"><path d="M 118 108.046875 L 179 108.046875 L 179 227 L 118 227 Z M 118 108.046875 "/></clipPath>
+                    </defs>
+                    <g>
+                        <g clip-rule="nonzero" clip-path="url(#clip1)">
+                            <path style="stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;" d="M 149.730469 258.046875 C 147.808594 255.300781 145.757812 252.636719 144.050781 249.785156 C 139.839844 242.71875 137.546875 235.097656 137.867188 226.804688 C 138.1875 218.089844 141.4375 210.4375 146.476562 203.453125 C 150.050781 198.496094 154.472656 194.3125 159.003906 190.230469 C 166.28125 183.675781 172.679688 176.371094 177.480469 167.761719 C 181.316406 160.855469 183.902344 153.550781 184.171875 145.582031 C 184.222656 144.035156 184.171875 142.460938 184.171875 140.757812 C 185.023438 142.0625 185.847656 143.34375 186.648438 144.648438 C 191.046875 151.792969 194.859375 159.230469 197.230469 167.359375 C 201.363281 181.542969 198.566406 194.203125 189.128906 205.507812 C 184.0625 211.585938 178.199219 216.863281 172.496094 222.328125 C 167.242188 227.367188 162.097656 232.511719 157.992188 238.5625 C 154.128906 244.238281 151.410156 250.398438 150.367188 257.222656 C 150.34375 257.40625 150.261719 257.621094 150.207031 257.808594 C 150.023438 257.886719 149.863281 257.96875 149.730469 258.046875 Z M 149.730469 258.046875 "/>
+                        </g>
+                        <g clip-rule="nonzero" clip-path="url(#clip2)">
+                            <path style="stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;" d="M 163.109375 108.046875 C 165.589844 112.394531 168.175781 116.65625 170.496094 121.082031 C 173.960938 127.695312 177.71875 133.878906 178.707031 141.34375 C 179.957031 150.753906 176.679688 160.136719 171.507812 168.054688 C 167.324219 174.425781 161.882812 179.703125 156.472656 184.980469 C 151.140625 190.179688 145.757812 195.296875 141.277344 201.292969 C 135.921875 208.464844 132.773438 216.4375 132.640625 225.472656 C 132.640625 225.6875 132.613281 225.871094 132.589844 226.273438 C 132.269531 225.980469 132.003906 225.820312 131.816406 225.578125 C 125.578125 218.410156 121.074219 210.277344 119.207031 200.949219 C 117.179688 190.84375 118.914062 181.25 124.671875 172.53125 C 128.484375 166.746094 133.253906 161.867188 138.347656 157.230469 C 145.917969 150.378906 152.449219 142.648438 157.191406 133.503906 C 160.738281 126.679688 163.03125 119.484375 162.976562 111.699219 C 162.976562 110.554688 162.84375 109.40625 162.765625 108.261719 C 162.871094 108.179688 163.003906 108.101562 163.109375 108.046875 Z M 163.109375 108.046875 "/>
+                        </g>
+                        <g style="fill:#ffffff;fill-opacity:1;">
+                            <g transform="translate(168.536741, 257.029188)">
+                                <path style="stroke:none" d="M 17.140625 -22.6875 C 20.128906 -22.6875 22.4375 -21.703125 24.0625 -19.734375 C 25.6875 -17.773438 26.5 -14.878906 26.5 -11.046875 C 26.5 -7.234375 25.6875 -4.351562 24.0625 -2.40625 C 22.4375 -0.46875 20.128906 0.5 17.140625 0.5 C 14.554688 0.5 12.484375 -0.335938 10.921875 -2.015625 L 10.921875 8.28125 L 2.5625 8.28125 L 2.5625 -22.171875 L 9.359375 -22.171875 L 10.078125 -19.03125 C 11.703125 -21.46875 14.054688 -22.6875 17.140625 -22.6875 Z M 14.53125 -16.5 C 13.300781 -16.5 12.378906 -16.066406 11.765625 -15.203125 C 11.148438 -14.335938 10.84375 -13.203125 10.84375 -11.796875 L 10.84375 -10.421875 C 10.84375 -9.015625 11.148438 -7.867188 11.765625 -6.984375 C 12.378906 -6.109375 13.300781 -5.671875 14.53125 -5.671875 C 16.9375 -5.671875 18.140625 -7.113281 18.140625 -10 L 18.140625 -12.21875 C 18.140625 -15.070312 16.9375 -16.5 14.53125 -16.5 Z M 14.53125 -16.5 "/>
+                            </g>
+                        </g>
+                        <g style="fill:#ffffff;fill-opacity:1;">
+                            <g transform="translate(195.836735, 257.029188)">
+                                <path style="stroke:none" d="M 17.765625 -0.671875 C 16.617188 2.429688 15.210938 4.785156 13.546875 6.390625 C 11.878906 8.003906 9.546875 8.8125 6.546875 8.8125 C 4.734375 8.8125 3.125 8.5625 1.71875 8.0625 L 1.71875 3.0625 L 5.078125 3.0625 C 7.179688 3.0625 8.425781 2.039062 8.8125 0 L 0 -22.171875 L 8.984375 -22.171875 L 13.234375 -7.4375 L 13.53125 -7.4375 L 17.4375 -22.171875 L 25.65625 -22.171875 Z M 17.765625 -0.671875 "/>
+                            </g>
+                        </g>
+                        <g style="fill:#ffffff;fill-opacity:1;">
+                            <g transform="translate(221.498736, 257.029188)">
+                                <path style="stroke:none" d="M 16 -22.71875 C 16.644531 -22.71875 17.21875 -22.640625 17.71875 -22.484375 C 18.226562 -22.335938 18.484375 -22.25 18.484375 -22.21875 L 18.484375 -15.203125 L 15.796875 -15.203125 C 14.054688 -15.203125 12.800781 -14.753906 12.03125 -13.859375 C 11.257812 -12.960938 10.875 -11.632812 10.875 -9.875 L 10.875 0 L 2.515625 0 L 2.515625 -22.171875 L 9.359375 -22.171875 L 9.90625 -18.8125 C 10.414062 -20.101562 11.210938 -21.078125 12.296875 -21.734375 C 13.390625 -22.390625 14.625 -22.71875 16 -22.71875 Z M 16 -22.71875 "/>
+                            </g>
+                        </g>
+                        <g style="fill:#ffffff;fill-opacity:1;">
+                            <g transform="translate(240.818731, 257.029188)">
+                                <path style="stroke:none" d="M 13.984375 -22.6875 C 17.878906 -22.6875 20.9375 -21.695312 23.15625 -19.71875 C 25.382812 -17.75 26.5 -14.875 26.5 -11.09375 C 26.5 -7.3125 25.382812 -4.429688 23.15625 -2.453125 C 20.9375 -0.484375 17.878906 0.5 13.984375 0.5 C 10.085938 0.5 7.035156 -0.476562 4.828125 -2.4375 C 2.617188 -4.394531 1.515625 -7.28125 1.515625 -11.09375 C 1.515625 -14.894531 2.617188 -17.773438 4.828125 -19.734375 C 7.035156 -21.703125 10.085938 -22.6875 13.984375 -22.6875 Z M 13.984375 -17.015625 C 11.242188 -17.015625 9.875 -15.429688 9.875 -12.265625 L 9.875 -9.875 C 9.875 -6.738281 11.242188 -5.171875 13.984375 -5.171875 C 16.753906 -5.171875 18.140625 -6.738281 18.140625 -9.875 L 18.140625 -12.265625 C 18.140625 -15.429688 16.753906 -17.015625 13.984375 -17.015625 Z M 13.984375 -17.015625 "/>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <h1 class="text-4xl md:text-7xl font-extrabold tracking-tighter leading-tight mb-10 text-white fade-in-element" style="--delay: 0.2s;">Stop juggling. Reclaim 10 hours a week from admin tasks and focus on what you do best.</h1>
+            <p class="text-xl md:text-2xl font-bold tracking-tight max-w-3xl mb-6 text-gray-300 fade-in-element" style="--delay: 0.3s;">We help fellow small business owners reclaim their time and amplify their value with smart AI automation.</p>
+            <a href="#book-a-call" class="inline-block mt-8 bg-white text-black font-bold py-4 px-8 rounded-full text-lg glowing-button fade-in-element" style="--delay: 0.4s;" aria-label="Book a free discovery call">
+                Book your free discovery call
+            </a>
+        </div>
+    </header>
+
+    <!-- Why Pyro Section -->
+    <section class="services-gradient py-24 md:py-48 px-6 md:px-12" id="why-pyro">
+        <div class="container mx-auto max-w-screen-lg">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-element">
+                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6 text-white">A different kind of consultancy</h2>
+                <p class="text-xl text-gray-300">The traditional agency model is broken. They build complex systems <em>for</em> you, creating dependency that leaves you in the dark. We build <em>with</em> you, turning automation into your own competitive advantage.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                <div class="info-card p-8 rounded-xl fade-in-element" style="--delay: 0.1s;">
+                    <h3 class="text-2xl font-bold text-white mb-4">Empowerment over Dependency</h3>
+                    <p class="text-lg text-gray-300">Our goal is to make you self-sufficient. We transfer knowledge so you own your automation and can adapt it as your business grows. No black boxes, no long-term retainers required.</p>
+                </div>
+                <div class="info-card p-8 rounded-xl fade-in-element" style="--delay: 0.2s;">
+                    <h3 class="text-2xl font-bold text-white mb-4">A Coach's Approach</h3>
+                    <p class="text-lg text-gray-300">With 30 years of leadership experience and a coaching certification, we don't just implement tools. We find your biggest point of friction and systematically solve it with you.</p>
+                </div>
+                <div class="info-card p-8 rounded-xl fade-in-element" style="--delay: 0.3s;">
+                    <h3 class="text-2xl font-bold text-white mb-4">Pragmatic & Proven</h3>
+                    <p class="text-lg text-gray-300">We cut through the AI hype to focus on practical, high-impact solutions. As a Singapore-based consultancy, we understand what works for small businesses in our market.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Services Section -->
+    <section class="services-gradient py-24 md:py-48 px-6 md:px-12">
+        <div class="container mx-auto max-w-screen-lg">
+            <div class="text-left max-w-3xl mb-20 fade-in-element">
+                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-8 text-white">We can help</h2>
+                <h3 class="text-3xl font-bold mb-6 text-white">You didn't become an entrepreneur to spend your days wrestling with your calendar, writing proposals from scratch, or manually creating reports. Yet, that's where the hours go.</h3>
+                <p class="text-lg text-gray-300">This is not a technical course. It's a focused plan designed to build your personalized AI toolkit. We'll cut through the hype and identify the top high-impact AI strategies you can implement immediately to automate your tasks.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="service-card p-8 rounded-xl fade-in-element" style="--delay: 0.1s;">
+                    <div class="flex-grow">
+                        <h3 class="text-3xl font-bold text-white mb-6">1. Identify</h3>
+                        <p class="text-lg mb-4 text-gray-300">We'll start with a 2-hour audit session to pinpoint your biggest time-sinks and map specific AI tools and workflows to solve them.</p>
+                        <p class="text-lg mb-4 text-gray-300">We don't automate chaos; we refine your processes first, then apply AI to amplify what works.</p>
+                        <h4 class="font-bold text-white mt-6 mb-2">What you get:</h4>
+                        <ul class="text-sm text-gray-300 space-y-2 mb-6 list-disc list-inside">
+                            <li>2-hour live audit session</li>
+                            <li>Personalized AI strategy roadmap</li>
+                            <li>Priority-ranked action items</li>
+                            <li>Recording of our session</li>
+                            <li>Follow-up email with resources</li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto">
+                        <p class="font-bold text-lg text-white mb-6">S$850</p>
+                        <a href="#book-a-call" class="inline-block bg-white text-black font-bold py-3 px-6 rounded-full text-lg glowing-button">Book an audit</a>
+                    </div>
+                </div>
+                <div class="service-card p-8 rounded-xl fade-in-element" style="--delay: 0.2s;">
+                    <div class="flex-grow">
+                        <h3 class="text-3xl font-bold text-white mb-6">2. Learn</h3>
+                        <p class="text-lg mb-4 text-gray-300">We'll train your team on the practical AI skills they need to implement and maintain your automation systems.</p>
+                        <h4 class="font-bold text-white mt-6 mb-2">Skills you'll master:</h4>
+                        <ul class="text-sm text-gray-300 space-y-2 mb-6 list-disc list-inside">
+                            <li>Setting up AI-powered workflows (Zapier, Make)</li>
+                            <li>Creating smart email templates and responses</li>
+                            <li>Automating client onboarding processes</li>
+                            <li>Building custom ChatGPT prompts for your business</li>
+                            <li>Integrating tools you already use</li>
+                        </ul>
+                        <p class="text-sm text-gray-300 mb-6">Custom training based on your audit results</p>
+                    </div>
+                    <div class="mt-auto">
+                        <a href="#book-a-call" class="inline-block bg-white text-black font-bold py-3 px-6 rounded-full text-lg glowing-button">Get in touch</a>
+                    </div>
+                </div>
+                <div class="service-card p-8 rounded-xl fade-in-element" style="--delay: 0.3s;">
+                    <div class="flex-grow">
+                        <h3 class="text-3xl font-bold text-white mb-6">3. Build</h3>
+                        <p class="text-lg mb-4 text-gray-300">We build your core AI systems with you, not just for you. You'll be involved every step of the way, learning how to manage and evolve your systems.</p>
+                        <h4 class="font-bold text-white mt-6 mb-2">Typical project includes:</h4>
+                        <ul class="text-sm text-gray-300 space-y-2 mb-6 list-disc list-inside">
+                            <li>Complete workflow automation setup</li>
+                            <li>Custom AI assistants for your business</li>
+                            <li>Integration with your existing tools</li>
+                            <li>Documentation and training materials</li>
+                            <li>30-day support and optimization</li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto">
+                        <p class="font-bold text-lg text-white mb-1">Starts at S$5,000</p>
+                        <p class="text-sm text-gray-400 mb-6">Most projects range S$5,000-S$8,000 depending on complexity</p>
+                        <a href="#book-a-call" class="inline-block bg-white text-black font-bold py-3 px-6 rounded-full text-lg glowing-button">Get a quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Magnet Section -->
+    <section class="about-gradient-blue py-24 md:py-48 px-6 md:px-12">
+        <div class="container mx-auto max-w-screen-lg">
+            <div class="max-w-3xl mx-auto text-center fade-in-element">
+                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-8 text-white">Not ready to talk yet?</h2>
+                <p class="text-xl text-white mb-8">Get our free guide: "5 AI Tools Every Small Business Owner Should Know" - practical automation ideas you can implement this week.</p>
+                <div class="info-card rounded-xl p-8 max-w-md mx-auto">
+                    <h3 class="text-2xl font-bold text-white mb-6">Get Your Free Guide</h3>
+                    <form action="https://formspree.io/f/xovlbraa" method="POST" class="space-y-4">
+                        <input type="hidden" name="form_type" value="lead_magnet">
+                        <div>
+                            <input type="email" name="email" placeholder="Enter your email address" class="w-full p-3 rounded-md bg-white/20 border border-white/30 placeholder-white/70 text-white font-bold focus:ring-2 focus:ring-blue-400 focus:outline-none" autocomplete="email" required>
+                        </div>
+                        <button type="submit" class="w-full bg-white text-black font-bold py-3 px-6 rounded-full text-lg glowing-button" data-umami-event="Download guide">Send me the guide</button>
+                    </form>
+                    <p class="text-sm text-white/70 mt-4">No spam. Unsubscribe anytime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- Contact Section -->
+        <section id="book-a-call" class="services-gradient py-24 md:py-48 px-6 md:px-12">
+            <div class="container mx-auto max-w-screen-lg">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="text-left fade-in-element">
+                        <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6 text-white">So, how about a chat?</h2>
+                        <p class="text-lg text-gray-300">Book a free no-obligation 30-minute chat for us to understand your business and for you to see if this is a fit. <strong>Drop us your email address and we'll be in touch. →</strong></p>
+                    </div>
+                    <div class="w-full fade-in-element" style="--delay: 0.2s;">
+                        <form action="https://formspree.io/f/xovlbraa" method="POST" class="space-y-4 info-card p-8 rounded-xl">
+                            <div>
+                                <label for="name" class="block mb-2 font-bold text-white">Your name</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your name" class="w-full p-3 rounded-md bg-white/20 border border-white/30 placeholder-white/70 text-white font-bold focus:ring-2 focus:ring-blue-400 focus:outline-none" autocomplete="name" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block mb-2 font-bold text-white">Your email</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" class="w-full p-3 rounded-md bg-white/20 border border-white/30 placeholder-white/70 text-white font-bold focus:ring-2 focus:ring-blue-400 focus:outline-none" autocomplete="email" required>
+                            </div>
+                            <div>
+                                <label for="message" class="block mb-2 font-bold text-white">Briefly, what do you need help with?</label>
+                                <textarea id="message" name="message" placeholder="Help me automate..." class="w-full p-3 rounded-md bg-white/20 border border-white/30 placeholder-white/70 text-white font-bold text-lg focus:ring-2 focus:ring-blue-400 focus:outline-none" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-white text-black font-bold py-4 px-8 rounded-full text-lg glowing-button" aria-label="Send message" data-umami-event="Send form">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- About Section -->
+    <section class="about-gradient-blue py-24 md:py-48 px-6 md:px-12">
+        <div class="container mx-auto max-w-screen-lg">
+            <div class="max-w-2xl mx-auto text-left fade-in-element">
+                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-8 text-white">About Pyro</h2>
+                <div class="space-y-6 text-lg text-left text-gray-300">
+                    <p>Hi, I'm Alan Soon, the founder of this little business.</p>
+                    <p>My 30-year career has spanned from leading teams through massive disruption to co-founding a micro consultancy that helps small media startups and creators thrive. Through it all, I've learned how to find opportunity in change.</p>
+                    <p>As a certified coach, my process is simple: I help you find the biggest point of friction in your business and I'll help you remove it.</p>
+                    <p>With Pyro, I'm bringing that same approach to creating AI workflows, acting as a <strong class="text-white">consultant for entrepreneurs</strong>.</p>
+                </div>
+                <a href="https://www.linkedin.com/in/alansoon/" target="_blank" rel="noopener noreferrer" class="inline-block mt-8 text-white font-bold hover:underline" data-umami-event="LinkedIn">
+                    Connect on LinkedIn →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-gradient py-24 px-6 md:px-12">
+        <div class="container mx-auto max-w-screen-lg text-sm text-gray-400">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <div class="mb-8 md:mb-0">
+                    <div class="mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" viewBox="118 108 257 175" aria-label="Pyro Logo" role="img">
                             <defs>
-                                <clipPath id="35881bb207"><path d="M 137 140 L 200 140 L 200 258.046875 L 137 258.046875 Z M 137 140 "/></clipPath>
-                                <clipPath id="159e8be987"><path d="M 118 108.046875 L 179 108.046875 L 179 227 L 118 227 Z M 118 108.046875 "/></clipPath>
+                                <clipPath id="clip1-footer"><path d="M 137 140 L 200 140 L 200 258.046875 L 137 258.046875 Z M 137 140 "/></clipPath>
+                                <clipPath id="clip2-footer"><path d="M 118 108.046875 L 179 108.046875 L 179 227 L 118 227 Z M 118 108.046875 "/></clipPath>
                             </defs>
-                            <g id="f3eecad5f1">
-                                <g clip-rule="nonzero" clip-path="url(#35881bb207)">
+                            <g>
+                                <g clip-rule="nonzero" clip-path="url(#clip1-footer)">
                                     <path style="stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;" d="M 149.730469 258.046875 C 147.808594 255.300781 145.757812 252.636719 144.050781 249.785156 C 139.839844 242.71875 137.546875 235.097656 137.867188 226.804688 C 138.1875 218.089844 141.4375 210.4375 146.476562 203.453125 C 150.050781 198.496094 154.472656 194.3125 159.003906 190.230469 C 166.28125 183.675781 172.679688 176.371094 177.480469 167.761719 C 181.316406 160.855469 183.902344 153.550781 184.171875 145.582031 C 184.222656 144.035156 184.171875 142.460938 184.171875 140.757812 C 185.023438 142.0625 185.847656 143.34375 186.648438 144.648438 C 191.046875 151.792969 194.859375 159.230469 197.230469 167.359375 C 201.363281 181.542969 198.566406 194.203125 189.128906 205.507812 C 184.0625 211.585938 178.199219 216.863281 172.496094 222.328125 C 167.242188 227.367188 162.097656 232.511719 157.992188 238.5625 C 154.128906 244.238281 151.410156 250.398438 150.367188 257.222656 C 150.34375 257.40625 150.261719 257.621094 150.207031 257.808594 C 150.023438 257.886719 149.863281 257.96875 149.730469 258.046875 Z M 149.730469 258.046875 "/>
                                 </g>
-                                <g clip-rule="nonzero" clip-path="url(#159e8be987)">
+                                <g clip-rule="nonzero" clip-path="url(#clip2-footer)">
                                     <path style="stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;" d="M 163.109375 108.046875 C 165.589844 112.394531 168.175781 116.65625 170.496094 121.082031 C 173.960938 127.695312 177.71875 133.878906 178.707031 141.34375 C 179.957031 150.753906 176.679688 160.136719 171.507812 168.054688 C 167.324219 174.425781 161.882812 179.703125 156.472656 184.980469 C 151.140625 190.179688 145.757812 195.296875 141.277344 201.292969 C 135.921875 208.464844 132.773438 216.4375 132.640625 225.472656 C 132.640625 225.6875 132.613281 225.871094 132.589844 226.273438 C 132.269531 225.980469 132.003906 225.820312 131.816406 225.578125 C 125.578125 218.410156 121.074219 210.277344 119.207031 200.949219 C 117.179688 190.84375 118.914062 181.25 124.671875 172.53125 C 128.484375 166.746094 133.253906 161.867188 138.347656 157.230469 C 145.917969 150.378906 152.449219 142.648438 157.191406 133.503906 C 160.738281 126.679688 163.03125 119.484375 162.976562 111.699219 C 162.976562 110.554688 162.84375 109.40625 162.765625 108.261719 C 162.871094 108.179688 163.003906 108.101562 163.109375 108.046875 Z M 163.109375 108.046875 "/>
                                 </g>
                                 <g style="fill:#ffffff;fill-opacity:1;">
@@ -113,280 +395,9 @@
                                 </g>
                             </g>
                         </svg>
-            </div>
-            <!-- SVG Logo End -->
-<h1 class="text-4xl md:text-7xl font-extrabold tracking-tighter leading-tight mb-10">Stop juggling. Reclaim 10 hours a week from admin tasks and focus on what you do best.</h1>
-<p class="text-xl md:text-2xl font-bold tracking-tight max-w-3xl mb-6">We help fellow small business owners reclaim their time and amplify their value with smart AI automation.</p>
-            <a href="#book-a-call" class="inline-block mt-8 bg-white text-black font-bold py-4 px-8 rounded-full text-lg glowing-button" aria-label="Book a free discovery call">
-                Book your free discovery call
-            </a>
-        </div>
-    </header>
-
-    <!-- Why Pyro Section -->
-    <section class="services-gradient py-24 md:py-48 px-6 md:px-12" id="why-pyro">
-        <div class="container mx-auto max-w-screen-lg">
-            <div class="text-center max-w-3xl mx-auto mb-10 fade-in-element">
-                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6 text-white">A different kind of consultancy</h2>
-                <p class="text-xl text-white">The traditional agency model is broken. They build complex systems <em>for</em> you, creating dependency that leaves you in the dark. We build <em>with</em> you, turning automation into your own competitive advantage.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
-                <!-- Point 1 -->
-                <div class="fade-in-element bg-white/20 p-8 rounded-lg border border-white/30">
-                    <h3 class="text-2xl font-bold text-white mb-4">Empowerment over Dependency</h3>
-                    <p class="text-lg text-white">Our goal is to make you self-sufficient. We transfer knowledge so you own your automation and can adapt it as your business grows. No black boxes, no long-term retainers required.</p>
-                </div>
-                <!-- Point 2 -->
-                <div class="fade-in-element bg-white/20 p-8 rounded-lg border border-white/30">
-                    <h3 class="text-2xl font-bold text-white mb-4">A Coach's Approach</h3>
-                    <p class="text-lg text-white">With 30 years of leadership experience and a coaching certification, we don't just implement tools. We find your biggest point of friction and systematically solve it with you.</p>
-                </div>
-                <!-- Point 3 -->
-                <div class="fade-in-element bg-white/20 p-8 rounded-lg border border-white/30">
-                    <h3 class="text-2xl font-bold text-white mb-4">Pragmatic & Proven</h3>
-                    <p class="text-lg text-white">We cut through the AI hype to focus on practical, high-impact solutions. As a Singapore-based consultancy, we understand what works for small businesses in our market.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Services Section -->
-        <section class="services-gradient py-24 md:py-48 px-6 md:px-12">
-        <div class="container mx-auto max-w-screen-lg">
-                <div class="text-left max-w-3xl mb-20">
-                    <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-8 text-white">We can help</h2>
-                    <h3 class="text-3xl font-bold mb-6 text-white">You didn't become an entrepreneur to spend your days wrestling with your calendar, writing proposals from scratch, or manually creating reports. Yet, that's where the hours go.</h3>
-                    <p class="text-lg text-white">This is not a technical course. It's a focused plan designed to build your personalized AI toolkit. We'll cut through the hype and identify the top high-impact AI strategies you can implement immediately to automate your tasks.</p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
-                    <!-- Service 1: Identify -->
-                    <div class="fade-in-element service-card">
-                        <div class="flex-grow">
-                            <h3 class="text-3xl font-bold text-white mb-6">1. Identify</h3>
-                            <p class="text-lg mb-4">We'll start with a 2-hour audit session to pinpoint your biggest time-sinks and map specific AI tools and workflows to solve them.</p>
-                            <p class="text-lg mb-4">We don't automate chaos; we refine your processes first, then apply AI to amplify what works.</p>
-
-                            <h4 class="font-bold text-white mt-6 mb-2">What you get:</h4>
-                            <ul class="text-sm text-white space-y-1 mb-6">
-                                <li>2-hour live audit session</li>
-                                <li>Personalized AI strategy roadmap</li>
-                                <li>Priority-ranked action items</li>
-                                <li>Recording of our session</li>
-                                <li>Follow-up email with resources</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="mt-auto">
-                            <p class="font-bold text-lg text-white mb-6">S$850</p>
-                            <a href="#book-a-call" class="inline-block bg-white text-black font-bold py-3 px-6 rounded-full text-lg glowing-button">
-                                Book an audit
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Service 2: Learn -->
-                    <div class="fade-in-element service-card">
-                        <div class="flex-grow">
-                            <h3 class="text-3xl font-bold text-white mb-6">2. Learn</h3>
-                            <p class="text-lg mb-4">We'll train your team on the practical AI skills they need to implement and maintain your automation systems.</p>
-
-                            <h4 class="font-bold text-white mt-6 mb-2">Skills you'll master:</h4>
-                            <ul class="text-sm text-white space-y-1 mb-6">
-                                <li>Setting up AI-powered workflows (Zapier, Make)</li>
-                                <li>Creating smart email templates and responses</li>
-                                <li>Automating client onboarding processes</li>
-                                <li>Building custom ChatGPT prompts for your business</li>
-                                <li>Integrating tools you already use</li>
-                            </ul>
-                            <p class="text-sm text-white mb-6">Custom training based on your audit results</p>
-                        </div>
-                        
-                        <div class="mt-auto">
-                            <a href="#book-a-call" class="inline-block bg-white text-black font-bold py-3 px-6 rounded-full text-lg glowing-button">
-                                Get in touch
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Service 3: Build -->
-                    <div class="fade-in-element service-card">
-                        <div class="flex-grow">
-                            <h3 class="text-3xl font-bold text-white mb-6">3. Build</h3>
-                            <p class="text-lg mb-4">We build your core AI systems with you, not just for you. You'll be involved every step of the way, learning how to manage and evolve your systems.</p>
-
-                            <h4 class="font-bold text-white mt-6 mb-2">Typical project includes:</h4>
-                            <ul class="text-sm text-white space-y-1 mb-6">
-                                <li>Complete workflow automation setup</li>
-                                <li>Custom AI assistants for your business</li>
-                                <li>Integration with your existing tools</li>
-                                <li>Documentation and training materials</li>
-                                <li>30-day support and optimization</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="mt-auto">
-                            <p class="font-bold text-lg text-white mb-1">Starts at S$5,000</p>
-                            <p class="text-sm text-white mb-6">Most projects range S$5,000-S$8,000 depending on complexity</p>
-                            <a href="#book-a-call" class="inline-block bg-white text-black font-bold py-3 px-6 rounded-full text-lg glowing-button">
-                                Get a quote
-                            </a>
-                        </div>
                     </div>
                 </div>
-        </div>
-    </section>
-
-    <!-- Lead Magnet Section -->
-    <section class="about-gradient-blue py-24 md:py-48 px-6 md:px-12">
-        <div class="container mx-auto max-w-screen-lg">
-            <div class="max-w-3xl mx-auto text-center fade-in-element">
-                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-8 text-white">Not ready to talk yet?</h2>
-                <p class="text-xl text-white mb-8">Get our free guide: "5 AI Tools Every Small Business Owner Should Know" - practical automation ideas you can implement this week.</p>
-                
-                <div class="bg-white/10 border border-white/20 rounded-lg p-8 backdrop-filter backdrop-blur-sm max-w-md mx-auto">
-                    <h3 class="text-2xl font-bold text-white mb-6">Get Your Free Guide</h3>
-                    <form action="https://formspree.io/f/xovlbraa" method="POST" class="space-y-4">
-                        <input type="hidden" name="form_type" value="lead_magnet">
-                        <div>
-                            <input 
-                              type="email" 
-                              name="email" 
-                              placeholder="Enter your email address" 
-                              class="w-full p-3 rounded-md bg-white/20 border border-white/30 placeholder-white/70 text-white font-bold"
-                              autocomplete="email"
-                              required
-                            >
-                        </div>
-                        <button type="submit" class="w-full bg-white text-black font-bold py-3 px-6 rounded-full text-lg glowing-button" data-umami-event="Download guide">
-                            Send me the guide
-                        </button>
-                    </form>
-                    <p class="text-sm text-white/70 mt-4">No spam. Unsubscribe anytime.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <main>
-
-        <!-- Contact Section -->
-        <section id="book-a-call" class="bg-accent-purple-2 py-24 md:py-48 px-6 md:px-12">
-            <div class="container mx-auto max-w-screen-lg">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="text-left">
-                        <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6 text-white">So, how about a chat?</h2>
-                        <p class="text-lg">Book a free no-obligation 30-minute chat for us to understand your business and for you to see if this is a fit. <strong>Drop us your email address and we'll be in touch. →</strong></p>
-                    </div>
-                    <div class="w-full">
-                        <!-- Formspree Form Start -->
-                        <form action="https://formspree.io/f/xovlbraa" method="POST" class="space-y-4">
-                          <div>
-                            <label for="name" class="block mb-1 font-bold text-white">Your name</label>
-                            <input 
-                              type="text" 
-                              id="name" 
-                              name="name" 
-                              placeholder="Enter your name" 
-                              class="w-full p-3 rounded-md bg-white/20 border border-white/30 placeholder-white/70 text-white font-bold"
-                              autocomplete="name"
-                              required
-                            >
-                          </div>
-                          <div>
-                            <label for="email" class="block mb-1 font-bold text-white">Your email</label>
-                            <input 
-                              type="email" 
-                              id="email" 
-                              name="email" 
-                              placeholder="Enter your email" 
-                              class="w-full p-3 rounded-md bg-white/20 border border-white/30 placeholder-white/70 text-white font-bold"
-                              autocomplete="email"
-                              required
-                            >
-                          </div>
-                          <div>
-                            <label for="message" class="block mb-1 font-bold text-white">Briefly, what do you need help with?</label>
-                            <textarea 
-                              id="message" 
-                              name="message" 
-                              placeholder="Help me automate..." 
-                              class="w-full p-3 rounded-md bg-white/20 border border-white/30 placeholder-white/70 text-white font-bold text-lg"
-                            ></textarea>
-                          </div>
-                          <button type="submit" class="w-full bg-white text-black font-bold py-4 px-8 rounded-full text-lg glowing-button" aria-label="Send message" data-umami-event="Send form">Send</button>
-                        </form>
-                        <!-- Formspree Form End -->
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-        <!-- About Section -->
-        <section class="about-gradient-blue py-24 md:py-48 px-6 md:px-12">
-            <div class="container mx-auto max-w-screen-lg">
-                <div class="max-w-2xl mx-auto text-left">
-                    <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-8 text-white">About Pyro</h2>
-                    <div class="space-y-4 text-lg text-left">
-                        <p>Hi, I'm Alan Soon, the founder of this little business.</p>
-                        <p>My 30-year career has spanned from leading teams through massive disruption to co-founding a micro consultancy that helps small media startups and creators thrive. Through it all, I've learned how to find opportunity in change.</p>
-                        <p>As a certified coach, my process is simple: I help you find the biggest point of friction in your business and I'll help you remove it.</p>
-                        <p>With Pyro, I'm bringing that same approach to creating AI workflows, acting as a <strong class="text-white">consultant for entrepreneurs</strong>.</p>
-                    </div>
-                    <a href="https://www.linkedin.com/in/alansoon/" target="_blank" rel="noopener noreferrer" class="inline-block mt-8 text-white font-bold hover:underline" data-umami-event="LinkedIn">
-                        Connect on LinkedIn →
-                    </a>
-                </div>
-            </div>
-        </section>
-
-    <!-- Footer -->
-    <footer class="footer-gradient py-24 md:py-48 px-6 md:px-12">
-        <div class="container mx-auto max-w-screen-lg text-sm">
-            <div class="flex flex-col md:flex-row justify-between items-start">
-                <!-- Left: SVG Logo -->
-                <div class="text-left">
-                    <!-- SVG Logo Start -->
-                    <div class="mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" viewBox="118 108 257 175" preserveAspectRatio="xMidYMid meet" aria-label="Pyro Logo - AI Advisory for Consultants" role="img">
-                            <defs>
-                                <clipPath id="35881bb207-footer"><path d="M 137 140 L 200 140 L 200 258.046875 L 137 258.046875 Z M 137 140 "/></clipPath>
-                                <clipPath id="159e8be987-footer"><path d="M 118 108.046875 L 179 108.046875 L 179 227 L 118 227 Z M 118 108.046875 "/></clipPath>
-                            </defs>
-                            <g id="f3eecad5f1-footer">
-                                <g clip-rule="nonzero" clip-path="url(#35881bb207-footer)">
-                                    <path style="stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;" d="M 149.730469 258.046875 C 147.808594 255.300781 145.757812 252.636719 144.050781 249.785156 C 139.839844 242.71875 137.546875 235.097656 137.867188 226.804688 C 138.1875 218.089844 141.4375 210.4375 146.476562 203.453125 C 150.050781 198.496094 154.472656 194.3125 159.003906 190.230469 C 166.28125 183.675781 172.679688 176.371094 177.480469 167.761719 C 181.316406 160.855469 183.902344 153.550781 184.171875 145.582031 C 184.222656 144.035156 184.171875 142.460938 184.171875 140.757812 C 185.023438 142.0625 185.847656 143.34375 186.648438 144.648438 C 191.046875 151.792969 194.859375 159.230469 197.230469 167.359375 C 201.363281 181.542969 198.566406 194.203125 189.128906 205.507812 C 184.0625 211.585938 178.199219 216.863281 172.496094 222.328125 C 167.242188 227.367188 162.097656 232.511719 157.992188 238.5625 C 154.128906 244.238281 151.410156 250.398438 150.367188 257.222656 C 150.34375 257.40625 150.261719 257.621094 150.207031 257.808594 C 150.023438 257.886719 149.863281 257.96875 149.730469 258.046875 Z M 149.730469 258.046875 "/>
-                                </g>
-                                <g clip-rule="nonzero" clip-path="url(#159e8be987-footer)">
-                                    <path style="stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;" d="M 163.109375 108.046875 C 165.589844 112.394531 168.175781 116.65625 170.496094 121.082031 C 173.960938 127.695312 177.71875 133.878906 178.707031 141.34375 C 179.957031 150.753906 176.679688 160.136719 171.507812 168.054688 C 167.324219 174.425781 161.882812 179.703125 156.472656 184.980469 C 151.140625 190.179688 145.757812 195.296875 141.277344 201.292969 C 135.921875 208.464844 132.773438 216.4375 132.640625 225.472656 C 132.640625 225.6875 132.613281 225.871094 132.589844 226.273438 C 132.269531 225.980469 132.003906 225.820312 131.816406 225.578125 C 125.578125 218.410156 121.074219 210.277344 119.207031 200.949219 C 117.179688 190.84375 118.914062 181.25 124.671875 172.53125 C 128.484375 166.746094 133.253906 161.867188 138.347656 157.230469 C 145.917969 150.378906 152.449219 142.648438 157.191406 133.503906 C 160.738281 126.679688 163.03125 119.484375 162.976562 111.699219 C 162.976562 110.554688 162.84375 109.40625 162.765625 108.261719 C 162.871094 108.179688 163.003906 108.101562 163.109375 108.046875 Z M 163.109375 108.046875 "/>
-                                </g>
-                                <g style="fill:#ffffff;fill-opacity:1;">
-                                    <g transform="translate(168.536741, 257.029188)">
-                                        <path style="stroke:none" d="M 17.140625 -22.6875 C 20.128906 -22.6875 22.4375 -21.703125 24.0625 -19.734375 C 25.6875 -17.773438 26.5 -14.878906 26.5 -11.046875 C 26.5 -7.234375 25.6875 -4.351562 24.0625 -2.40625 C 22.4375 -0.46875 20.128906 0.5 17.140625 0.5 C 14.554688 0.5 12.484375 -0.335938 10.921875 -2.015625 L 10.921875 8.28125 L 2.5625 8.28125 L 2.5625 -22.171875 L 9.359375 -22.171875 L 10.078125 -19.03125 C 11.703125 -21.46875 14.054688 -22.6875 17.140625 -22.6875 Z M 14.53125 -16.5 C 13.300781 -16.5 12.378906 -16.066406 11.765625 -15.203125 C 11.148438 -14.335938 10.84375 -13.203125 10.84375 -11.796875 L 10.84375 -10.421875 C 10.84375 -9.015625 11.148438 -7.867188 11.765625 -6.984375 C 12.378906 -6.109375 13.300781 -5.671875 14.53125 -5.671875 C 16.9375 -5.671875 18.140625 -7.113281 18.140625 -10 L 18.140625 -12.21875 C 18.140625 -15.070312 16.9375 -16.5 14.53125 -16.5 Z M 14.53125 -16.5 "/>
-                                    </g>
-                                </g>
-                                <g style="fill:#ffffff;fill-opacity:1;">
-                                    <g transform="translate(195.836735, 257.029188)">
-                                        <path style="stroke:none" d="M 17.765625 -0.671875 C 16.617188 2.429688 15.210938 4.785156 13.546875 6.390625 C 11.878906 8.003906 9.546875 8.8125 6.546875 8.8125 C 4.734375 8.8125 3.125 8.5625 1.71875 8.0625 L 1.71875 3.0625 L 5.078125 3.0625 C 7.179688 3.0625 8.425781 2.039062 8.8125 0 L 0 -22.171875 L 8.984375 -22.171875 L 13.234375 -7.4375 L 13.53125 -7.4375 L 17.4375 -22.171875 L 25.65625 -22.171875 Z M 17.765625 -0.671875 "/>
-                                    </g>
-                                </g>
-                                <g style="fill:#ffffff;fill-opacity:1;">
-                                    <g transform="translate(221.498736, 257.029188)">
-                                        <path style="stroke:none" d="M 16 -22.71875 C 16.644531 -22.71875 17.21875 -22.640625 17.71875 -22.484375 C 18.226562 -22.335938 18.484375 -22.25 18.484375 -22.21875 L 18.484375 -15.203125 L 15.796875 -15.203125 C 14.054688 -15.203125 12.800781 -14.753906 12.03125 -13.859375 C 11.257812 -12.960938 10.875 -11.632812 10.875 -9.875 L 10.875 0 L 2.515625 0 L 2.515625 -22.171875 L 9.359375 -22.171875 L 9.90625 -18.8125 C 10.414062 -20.101562 11.210938 -21.078125 12.296875 -21.734375 C 13.390625 -22.390625 14.625 -22.71875 16 -22.71875 Z M 16 -22.71875 "/>
-                                    </g>
-                                </g>
-                                <g style="fill:#ffffff;fill-opacity:1;">
-                                    <g transform="translate(240.818731, 257.029188)">
-                                        <path style="stroke:none" d="M 13.984375 -22.6875 C 17.878906 -22.6875 20.9375 -21.695312 23.15625 -19.71875 C 25.382812 -17.75 26.5 -14.875 26.5 -11.09375 C 26.5 -7.3125 25.382812 -4.429688 23.15625 -2.453125 C 20.9375 -0.484375 17.878906 0.5 13.984375 0.5 C 10.085938 0.5 7.035156 -0.476562 4.828125 -2.4375 C 2.617188 -4.394531 1.515625 -7.28125 1.515625 -11.09375 C 1.515625 -14.894531 2.617188 -17.773438 4.828125 -19.734375 C 7.035156 -21.703125 10.085938 -22.6875 13.984375 -22.6875 Z M 13.984375 -17.015625 C 11.242188 -17.015625 9.875 -15.429688 9.875 -12.265625 L 9.875 -9.875 C 9.875 -6.738281 11.242188 -5.171875 13.984375 -5.171875 C 16.753906 -5.171875 18.140625 -6.738281 18.140625 -9.875 L 18.140625 -12.21875 C 18.140625 -15.070312 16.753906 -17.015625 13.984375 -17.015625 Z M 13.984375 -17.015625 "/>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                    </div>
-                    <!-- SVG Logo End -->
-                </div>
-                <!-- Right: Footer Text -->
-                <div class="text-right md:text-right mt-8 md:mt-0">
+                <div class="text-center md:text-right">
                     <p>© <span id="copyright-year">2024</span> Pyro Singapore</p>
                     <p>All rights reserved</p>
                     <p>alan@pyro.sg</p>
@@ -399,24 +410,25 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for fade-in animations
             const observerOptions = {
-                root: null, // Use the viewport as the root
+                root: null,
                 rootMargin: '0px',
-                threshold: 0.1 // Trigger when 10% of the element is visible
+                threshold: 0.1
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
-                    // If the element is intersecting the viewport
                     if (entry.isIntersecting) {
+                        // Apply the delay from the CSS custom property
+                        const delay = getComputedStyle(entry.target).getPropertyValue('--delay');
+                        entry.target.style.transitionDelay = delay;
                         entry.target.classList.add('is-visible');
-                        // Stop observing the element so the animation only happens once
                         observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
 
-            // Select all elements you want to animate
             const elementsToAnimate = document.querySelectorAll('.fade-in-element');
             elementsToAnimate.forEach(el => observer.observe(el));
 
@@ -426,3 +438,4 @@
     </script>
 </body>
 </html>
+
