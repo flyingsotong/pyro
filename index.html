@@ -27,13 +27,8 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-
     <!-- Umami Analytics -->
-    <script src="https://cloud.umami.is/script.js" data-website-id="4df6c89a-3ef2-4803-9211-98368b62a79d"></script>
+    <script async src="https://cloud.umami.is/script.js" data-website-id="4df6c89a-3ef2-4803-9211-98368b62a79d"></script>
 
     <style>
         /* Custom styles to complement Tailwind and achieve the desired look and feel */
@@ -108,6 +103,19 @@
         }
         ::-webkit-scrollbar-thumb:hover {
             background: #3c52c7;
+        }
+
+        /* For visually hiding labels while keeping them accessible */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
 
     </style>
@@ -190,8 +198,9 @@
         </div>
     </header>
 
-    <!-- Why Pyro Section -->
-    <section class="services-gradient py-24 md:py-48 px-6 md:px-12" id="why-pyro">
+    <main>
+        <!-- Why Pyro Section -->
+        <section class="services-gradient py-24 md:py-48 px-6 md:px-12" id="why-pyro">
         <div class="container mx-auto max-w-screen-lg">
             <div class="text-center max-w-3xl mx-auto mb-16 fade-in-element">
                 <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6 text-white">A different kind of consultancy</h2>
@@ -213,10 +222,10 @@
                 </div>
             </div>
         </div>
-    </section>
+        </section>
 
-    <!-- Our Services Section -->
-    <section class="services-gradient py-24 md:py-48 px-6 md:px-12">
+        <!-- Our Services Section -->
+        <section class="services-gradient py-24 md:py-48 px-6 md:px-12">
         <div class="container mx-auto max-w-screen-lg">
             <div class="text-left max-w-3xl mb-20 fade-in-element">
                 <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-8 text-white">We can help</h2>
@@ -283,30 +292,30 @@
                 </div>
             </div>
         </div>
-    </section>
+        </section>
 
-    <!-- Lead Magnet Section -->
-    <section class="about-gradient-blue py-24 md:py-48 px-6 md:px-12">
+        <!-- Lead Magnet Section -->
+        <section class="about-gradient-blue py-24 md:py-48 px-6 md:px-12">
         <div class="container mx-auto max-w-screen-lg">
             <div class="max-w-3xl mx-auto text-center fade-in-element">
                 <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-8 text-white">Not ready to talk yet?</h2>
                 <p class="text-xl text-white mb-8">Get our free guide: "5 AI Tools Every Small Business Owner Should Know" - practical automation ideas you can implement this week.</p>
                 <div class="info-card rounded-xl p-8 max-w-md mx-auto">
-                    <h3 class="text-2xl font-bold text-white mb-6">Get Your Free Guide</h3>
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center">Get Your Free Guide</h3>
                     <form action="https://formspree.io/f/xovlbraa" method="POST" class="space-y-4">
                         <input type="hidden" name="form_type" value="lead_magnet">
                         <div>
-                            <input type="email" name="email" placeholder="Enter your email address" class="w-full p-3 rounded-md bg-white/20 border border-white/30 placeholder-white/70 text-white font-bold focus:ring-2 focus:ring-blue-400 focus:outline-none" autocomplete="email" required>
+                            <label for="lead-email" class="sr-only">Email address</label>
+                            <input id="lead-email" type="email" name="email" placeholder="Enter your email address" class="w-full p-3 rounded-md bg-white/20 border border-white/30 placeholder-white/70 text-white font-bold focus:ring-2 focus:ring-blue-400 focus:outline-none" autocomplete="email" required>
                         </div>
                         <button type="submit" class="w-full bg-white text-black font-bold py-3 px-6 rounded-full text-lg glowing-button" data-umami-event="Download guide">Send me the guide</button>
                     </form>
-                    <p class="text-sm text-white/70 mt-4">No spam. Unsubscribe anytime.</p>
+                    <p class="text-sm text-white/70 mt-4 text-center">No spam. Unsubscribe anytime.</p>
                 </div>
             </div>
         </div>
-    </section>
+        </section>
 
-    <main>
         <!-- Contact Section -->
         <section id="book-a-call" class="services-gradient py-24 md:py-48 px-6 md:px-12">
             <div class="container mx-auto max-w-screen-lg">
@@ -335,25 +344,25 @@
                 </div>
             </div>
         </section>
-    </main>
 
-    <!-- About Section -->
-    <section class="about-gradient-blue py-24 md:py-48 px-6 md:px-12">
+        <!-- About Section -->
+        <section class="about-gradient-blue py-24 md:py-48 px-6 md:px-12">
         <div class="container mx-auto max-w-screen-lg">
             <div class="max-w-2xl mx-auto text-left fade-in-element">
                 <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-8 text-white">About Pyro</h2>
                 <div class="space-y-6 text-lg text-left text-gray-300">
-                    <p>Hi, I'm Alan Soon, the founder of this little business.</p>
-                    <p>My 30-year career has spanned from leading teams through massive disruption to co-founding a micro consultancy that helps small media startups and creators thrive. Through it all, I've learned how to find opportunity in change.</p>
-                    <p>As a certified coach, my process is simple: I help you find the biggest point of friction in your business and I'll help you remove it.</p>
-                    <p>With Pyro, I'm bringing that same approach to creating AI workflows, acting as a <strong class="text-white">consultant for entrepreneurs</strong>.</p>
+                        <p>Hi, I'm Alan Soon, the founder of this little business.</p>
+                        <p>My 30-year career has spanned from leading teams through massive disruption to co-founding a micro consultancy that helps small media startups and creators thrive. Through it all, I've learned how to find opportunity in change.</p>
+                        <p>As a certified coach, my process is simple: I help you find the biggest point of friction in your business and I'll help you remove it.</p>
+                        <p>With Pyro, I'm bringing that same approach to creating AI workflows, acting as a <strong class="text-white">consultant for entrepreneurs</strong>.</p>
                 </div>
                 <a href="https://www.linkedin.com/in/alansoon/" target="_blank" rel="noopener noreferrer" class="inline-block mt-8 text-white font-bold hover:underline" data-umami-event="LinkedIn">
-                    Connect on LinkedIn →
+                        Connect on LinkedIn →
                 </a>
             </div>
         </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer-gradient py-24 px-6 md:px-12">
@@ -438,4 +447,3 @@
     </script>
 </body>
 </html>
-
