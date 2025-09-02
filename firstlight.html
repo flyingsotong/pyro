@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Light</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a1a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 80% 20%, rgba(249, 115, 22, 0.35) 0%, transparent 50%),
+                radial-gradient(ellipse at 10% 80%, rgba(124, 58, 237, 0.25) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 10%, #0c0c24 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1.2);
+            }
+            100% {
+                transform: translate(-5%, -5%) scale(1.3);
+            }
+        }
+
+        .story-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .story-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a3a9a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3c52c7;
+        }
+        
+        .footer-gradient {
+            background: radial-gradient(ellipse at 50% 100%, #0c0c24 0%, #0a0a1a 70%);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    
+    <header class="hero-gradient">
+        <div class="relative z-10 container mx-auto px-6 pt-16 pb-8 md:pt-24 md:pb-16">
+            <!-- Header Section -->
+            <div class="text-left">
+                <h1 class="text-5xl md:text-6xl font-extrabold tracking-tighter text-white">First Light</h1>
+                <p class="text-lg md:text-2xl text-gray-300 mt-2 mb-4">Your morning brief from the capitals of Southeast Asia.</p>
+                <p class="text-base md:text-xl text-gray-400" id="current-date">Tuesday, September 2, 2025</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-6 pb-16 md:pb-24">
+        <!-- Main Content Grid -->
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Story 1: Indonesia Protests -->
+            <div class="story-card lg:col-span-2 rounded-xl overflow-hidden">
+                    <div class="p-6 md:p-8 flex-grow">
+                        <span class="text-sm font-semibold text-indigo-300 bg-indigo-500/10 px-3 py-1 rounded-full">INDONESIA</span>
+                        <h2 class="text-xl md:text-2xl font-bold mt-4 mb-3 text-white">Protests erupt across Indonesia over elite rule</h2>
+                        <p class="text-base text-gray-300">
+                            Nationwide demonstrations, initially sparked by anger over lawmakers' housing allowances, have escalated into a violent backlash against what protesters call 'corrupt elites' and policies benefiting conglomerates. The unrest intensified following the death of a delivery driver in Jakarta, leading to widespread riots and the burning of public buildings, posing the most significant challenge yet to President Prabowo's new administration.
+                        </p>
+                    </div>
+                    <div class="p-6 md:p-8 pt-0">
+                        <p class="text-xs text-gray-400 mb-4">Source: The Guardian, South China Morning Post</p>
+                        <a href="#" class="font-semibold text-indigo-400 hover:text-indigo-300">Read more &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Story 2: Thailand Political Turmoil -->
+                <div class="story-card rounded-xl overflow-hidden">
+                    <div class="p-6 md:p-8 flex-grow">
+                        <span class="text-sm font-semibold text-green-300 bg-green-500/10 px-3 py-1 rounded-full">THAILAND</span>
+                        <h2 class="text-xl md:text-2xl font-bold mt-4 mb-3 text-white">PM's dismissal plunges Thailand into crisis</h2>
+                        <p class="text-base text-gray-300">
+                            Thailand's Constitutional Court has sacked the prime minister, plunging the fragile ruling coalition into chaos and creating a significant power vacuum. This move pushes the nation into a state of political paralysis with no clear successor readily available, raising fears of prolonged instability.
+                        </p>
+                    </div>
+                    <div class="p-6 md:p-8 pt-0">
+                        <p class="text-xs text-gray-400 mb-4">Source: South China Morning Post, The Diplomat</p>
+                        <a href="#" class="font-semibold text-green-400 hover:text-green-300">Read more &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Story 3: Philippines Nepotism Scandal -->
+                <div class="story-card rounded-xl overflow-hidden">
+                    <div class="p-6 md:p-8 flex-grow">
+                         <span class="text-sm font-semibold text-blue-300 bg-blue-500/10 px-3 py-1 rounded-full">PHILIPPINES</span>
+                        <h2 class="text-xl md:text-2xl font-bold mt-4 mb-3 text-white">"Nepo babies" scandal engulfs political elite</h2>
+                        <p class="text-base text-gray-300">
+                            Public outrage is growing as Filipinos take to social media to expose the lavish lifestyles of politicians' and contractors' children, dubbed 'nepo babies.' This comes as President Marcos orders an investigation into massive failures in public infrastructure and flood control projects.
+                        </p>
+                    </div>
+                    <div class="p-6 md:p-8 pt-0">
+                        <p class="text-xs text-gray-400 mb-4">Source: South China Morning Post</p>
+                        <a href="#" class="font-semibold text-blue-400 hover:text-blue-300">Read more &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Story 4: Vietnam's Military Parade -->
+                <div class="story-card rounded-xl overflow-hidden">
+                    <div class="p-6 md:p-8 flex-grow">
+                        <span class="text-sm font-semibold text-red-300 bg-red-500/10 px-3 py-1 rounded-full">VIETNAM</span>
+                        <h2 class="text-xl md:text-2xl font-bold mt-4 mb-3 text-white">Vietnam marks 80th national day with grand parade</h2>
+                        <p class="text-base text-gray-300">
+                            Hanoi hosts a massive military parade at Ba Dinh Square to celebrate the 80th anniversary of its independence from France. The event showcases national unity and modernized military strength, sending a message of resilience to domestic and international audiences.
+                        </p>
+                    </div>
+                    <div class="p-6 md:p-8 pt-0">
+                        <p class="text-xs text-gray-400 mb-4">Source: The Diplomat</p>
+                        <a href="#" class="font-semibold text-red-400 hover:text-red-300">Read more &rarr;</a>
+                    </div>
+                </div>
+                
+                <!-- Story 5: Malaysia's Network States -->
+                <div class="story-card rounded-xl overflow-hidden">
+                     <div class="p-6 md:p-8 flex-grow">
+                        <span class="text-sm font-semibold text-yellow-300 bg-yellow-500/10 px-3 py-1 rounded-full">MALAYSIA</span>
+                        <h2 class="text-xl md:text-2xl font-bold mt-4 mb-3 text-white">Tech bros aim to build new nations</h2>
+                        <p class="text-base text-gray-300">
+                             A growing community of tech entrepreneurs is flocking to Johor to explore the creation of 'network states.' These experimental sovereign entities would blend cutting-edge technology, digital currency, and a distinct political ideology, representing a novel approach to nation-building.
+                        </p>
+                    </div>
+                    <div class="p-6 md:p-8 pt-0">
+                        <p class="text-xs text-gray-400 mb-4">Source: South China Morning Post</p>
+                        <a href="#" class="font-semibold text-yellow-400 hover:text-yellow-300">Read more &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Story 6: Singapore's PAP -->
+                <div class="story-card rounded-xl overflow-hidden">
+                     <div class="p-6 md:p-8 flex-grow">
+                        <span class="text-sm font-semibold text-teal-300 bg-teal-500/10 px-3 py-1 rounded-full">SINGAPORE</span>
+                        <h2 class="text-xl md:text-2xl font-bold mt-4 mb-3 text-white">Analysts debate the PAP's long-term grip on power</h2>
+                        <p class="text-base text-gray-300">
+                             Political analysts are examining the People's Action Party's formula for governance. Discussions revolve around whether their strategies for economic stability and social control can ensure their dominance indefinitely amidst evolving societal expectations and a new generation of voters.
+                        </p>
+                    </div>
+                    <div class="p-6 md:p-8 pt-0">
+                        <p class="text-xs text-gray-400 mb-4">Source: South China Morning Post</p>
+                        <a href="#" class="font-semibold text-teal-400 hover:text-teal-300">Read more &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Story 7: Myanmar Crisis -->
+                <div class="story-card rounded-xl overflow-hidden">
+                     <div class="p-6 md:p-8 flex-grow">
+                        <span class="text-sm font-semibold text-orange-300 bg-orange-500/10 px-3 py-1 rounded-full">MYANMAR</span>
+                        <h2 class="text-xl md:text-2xl font-bold mt-4 mb-3 text-white">ASEAN leaders push for new peace talks in Myanmar</h2>
+                        <p class="text-base text-gray-300">
+                             Leaders across Southeast Asia are intensifying efforts to broker peace in Myanmar. Malaysia, as the current ASEAN chair, is engaging with both the junta and opposition groups to foster direct dialogue, though progress on the bloc's five-point consensus remains stalled.
+                        </p>
+                    </div>
+                    <div class="p-6 md:p-8 pt-0">
+                        <p class="text-xs text-gray-400 mb-4">Source: The Straits Times</p>
+                        <a href="#" class="font-semibold text-orange-400 hover:text-orange-300">Read more &rarr;</a>
+                    </div>
+                </div>
+
+                 <!-- Story 8: ASEAN's Role -->
+                <div class="story-card rounded-xl overflow-hidden">
+                     <div class="p-6 md:p-8 flex-grow">
+                        <span class="text-sm font-semibold text-cyan-300 bg-cyan-500/10 px-3 py-1 rounded-full">ASEAN</span>
+                        <h2 class="text-xl md:text-2xl font-bold mt-4 mb-3 text-white">Regional bloc faces questions over unity and relevance</h2>
+                        <p class="text-base text-gray-300">
+                            Amidst escalating great power rivalry and internal crises like the conflict in Myanmar, the geostrategic salience of ASEAN is being questioned. Divergent national priorities are leading member states to forge individual paths, challenging the organization's ability to act as a unified front.
+                        </p>
+                    </div>
+                    <div class="p-6 md:p-8 pt-0">
+                        <p class="text-xs text-gray-400 mb-4">Source: ISEAS Publishing</p>
+                        <a href="#" class="font-semibold text-cyan-400 hover:text-cyan-300">Read more &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Story 9: Regional Economy -->
+                <div class="story-card lg:col-span-2 rounded-xl overflow-hidden">
+                     <div class="p-6 md:p-8 flex-grow">
+                        <span class="text-sm font-semibold text-pink-300 bg-pink-500/10 px-3 py-1 rounded-full">REGIONAL ECONOMY</span>
+                        <h2 class="text-xl md:text-2xl font-bold mt-4 mb-3 text-white">US-China trade tensions create economic uncertainty</h2>
+                        <p class="text-base text-gray-300">
+                             The ongoing trade war between the United States and China is casting a shadow over Southeast Asia's economic outlook. While some nations benefit from supply chain shifts, rising protectionism and tariff uncertainty are dampening business confidence and impacting regional growth forecasts for the coming year.
+                        </p>
+                    </div>
+                    <div class="p-6 md:p-8 pt-0">
+                        <p class="text-xs text-gray-400 mb-4">Source: McKinsey, Asia Foundation</p>
+                        <a href="#" class="font-semibold text-pink-400 hover:text-pink-300">Read more &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Story 10: China's Influence -->
+                <div class="story-card rounded-xl overflow-hidden">
+                     <div class="p-6 md:p-8 flex-grow">
+                        <span class="text-sm font-semibold text-purple-300 bg-purple-500/10 px-3 py-1 rounded-full">REGIONAL DIPLOMACY</span>
+                        <h2 class="text-xl md:text-2xl font-bold mt-4 mb-3 text-white">China expands its economic and diplomatic footprint</h2>
+                        <p class="text-base text-gray-300">
+                             China continues to deepen its ties with Southeast Asian nations through investment, trade, and diplomacy. This growing influence is a key factor in regional geopolitics, forcing countries to navigate a complex balancing act between Beijing and Washington.
+                        </p>
+                    </div>
+                    <div class="p-6 md:p-8 pt-0">
+                        <p class="text-xs text-gray-400 mb-4">Source: The Diplomat, South China Morning Post</p>
+                        <a href="#" class="font-semibold text-purple-400 hover:text-purple-300">Read more &rarr;</a>
+                    </div>
+                </div>
+
+            </main>
+            
+        </div>
+    </div>
+
+    <footer class="footer-gradient py-12 px-6">
+        <div class="container mx-auto max-w-screen-lg text-sm text-gray-400 text-left">
+            <p class="font-bold text-lg text-white mb-2">First Light</p>
+            <p>© <span id="copyright-year"></span> First Light. All rights reserved.</p>
+            <p class="mt-4">Made in 🇸🇬</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set the date dynamically
+        const dateElement = document.getElementById('current-date');
+        const today = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        dateElement.textContent = today.toLocaleDateString('en-US', options);
+
+        // Set the copyright year dynamically
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
+
