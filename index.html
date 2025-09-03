@@ -88,13 +88,13 @@
         /* Fade-in Animation on Scroll */
         .fade-in-element {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(40px) scale(0.95);
+            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
             transition-delay: var(--delay, 0s);
         }
         .fade-in-element.is-visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         /* Custom scrollbar for a more integrated look */
@@ -217,7 +217,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
                 <div class="info-card p-8 rounded-xl fade-in-element" style="--delay: 0.1s;">
                     <div class="icon-wrapper w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                         </svg>
                     </div>
@@ -226,7 +226,7 @@
                 </div>
                 <div class="info-card p-8 rounded-xl fade-in-element" style="--delay: 0.2s;">
                     <div class="icon-wrapper w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2V7a2 2 0 012-2h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 01.293.707V8z" />
                         </svg>
                     </div>
@@ -235,7 +235,7 @@
                 </div>
                 <div class="info-card p-8 rounded-xl fade-in-element" style="--delay: 0.3s;">
                     <div class="icon-wrapper w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                         </svg>
                     </div>
@@ -255,14 +255,14 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                <div class="service-card p-8 rounded-xl fade-in-element" style="--delay: 0.1s;">
+                <div class="service-card p-6 md:p-8 rounded-xl fade-in-element" style="--delay: 0.1s;">
                     <div class="flex-grow">
                         <div class="icon-wrapper w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
                         </div>
-                        <h3 class="text-3xl font-bold text-white mb-6">1. Identify</h3>
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">1. Identify</h3>
                         <p class="text-lg mb-4 text-gray-300">We'll start with a 2-hour audit session to pinpoint your biggest time-sinks and map specific AI tools and workflows to solve them.</p>
                         <p class="text-lg mb-4 text-gray-300">We don't automate chaos; we refine your processes first, then apply AI to amplify what works.</p>
                         <h4 class="font-bold text-white mt-6 mb-2">What you get:</h4>
@@ -279,14 +279,14 @@
                         <a href="#book-a-call" class="inline-block bg-white text-black font-bold py-3 px-6 rounded-full text-lg glowing-button">Book an audit</a>
                     </div>
                 </div>
-                <div class="service-card p-8 rounded-xl fade-in-element" style="--delay: 0.2s;">
+                <div class="service-card p-6 md:p-8 rounded-xl fade-in-element" style="--delay: 0.2s;">
                     <div class="flex-grow">
                         <div class="icon-wrapper w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                             </svg>
                         </div>
-                        <h3 class="text-3xl font-bold text-white mb-6">2. Learn</h3>
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">2. Learn</h3>
                         <p class="text-lg mb-4 text-gray-300">We'll train your team on the practical AI skills they need to implement and maintain your automation systems.</p>
                         <h4 class="font-bold text-white mt-6 mb-2">Skills you'll master:</h4>
                         <ul class="text-sm text-gray-300 space-y-2 mb-6 list-disc list-inside">
@@ -302,14 +302,14 @@
                         <a href="#book-a-call" class="inline-block bg-white text-black font-bold py-3 px-6 rounded-full text-lg glowing-button">Get in touch</a>
                     </div>
                 </div>
-                <div class="service-card p-8 rounded-xl fade-in-element" style="--delay: 0.3s;">
+                <div class="service-card p-6 md:p-8 rounded-xl fade-in-element" style="--delay: 0.3s;">
                     <div class="flex-grow">
                         <div class="icon-wrapper w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                             </svg>
                         </div>
-                        <h3 class="text-3xl font-bold text-white mb-6">3. Build</h3>
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">3. Build</h3>
                         <p class="text-lg mb-4 text-gray-300">We build your core AI systems with you, not just for you. You'll be involved every step of the way, learning how to manage and evolve your systems.</p>
                         <h4 class="font-bold text-white mt-6 mb-2">Typical project includes:</h4>
                         <ul class="text-sm text-gray-300 space-y-2 mb-6 list-disc list-inside">
@@ -428,7 +428,7 @@
                         <p>As a certified coach, my process is simple: I help you find the biggest point of friction in your business and I'll help you remove it.</p>
                         <p>With Pyro, I'm bringing that same approach to creating AI workflows, acting as a <strong class="text-white">consultant for entrepreneurs</strong>.</p>
                 </div>
-                <a href="https://www.linkedin.com/in/alansoon/" target="_blank" rel="noopener noreferrer" class="inline-block mt-8 text-white font-bold hover:underline" data-umami-event="LinkedIn">
+                <a href="https://www.linkedin.com/in/alansoon/" target="_blank" rel="noopener noreferrer" class="inline-block mt-8 text-white font-bold hover:underline" data-umami-event="LinkedIn" aria-label="Connect with Alan Soon on LinkedIn">
                         Connect on LinkedIn →
                 </a>
             </div>
