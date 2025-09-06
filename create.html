@@ -284,6 +284,7 @@
         </div>
     </footer>
 
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('copyright-year').textContent = new Date().getFullYear();
@@ -292,9 +293,15 @@
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenuButton.addEventListener('click', () => {
+                console.log('Mobile menu button clicked!');
                 const isOpen = mobileMenu.classList.toggle('is-open');
                 mobileMenuButton.setAttribute('aria-expanded', isOpen);
             });
+
+            // Trigger click after 5 seconds
+            setTimeout(() => {
+                mobileMenuButton.click();
+            }, 5000);
             
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
