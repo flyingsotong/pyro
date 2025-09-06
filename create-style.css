@@ -30,6 +30,7 @@ body {
     font-family: var(--font-main);
     color: var(--color-text-base);
     background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-dark) 100%);
+    position: relative; /* Establishes a containing block for pseudo-elements */
     overflow-x: hidden; /* Prevents horizontal scrolling caused by animations */
 }
 
