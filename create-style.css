@@ -49,7 +49,7 @@ body::before {
     height: 100%;
     background: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.1), transparent 40%),
                 radial-gradient(circle at 80% 90%, rgba(120, 80, 200, 0.1), transparent 40%);
-    overflow: hidden; /* This is the key fix */
+    overflow: hidden;
     z-index: -1;
     animation: moveGlow 20s infinite alternate ease-in-out;
 }
