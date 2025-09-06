@@ -100,6 +100,11 @@
         .max-w-3xl { max-width: 48rem; }
         .max-w-4xl { max-width: 1024px; }
 
+        /* Utility class for toggling visibility */
+        .hidden {
+            display: none;
+        }
+
         /* Header */
         .main-header {
             position: fixed;
@@ -438,7 +443,7 @@
             <div class="container relative">
                 <h1>Your business is brilliant. <br> Your website should be too.</h1>
                 <p>
-                    Tired of the <span style="color: #fff;">freelancer gamble</span> and <span style="color: #fff;">agency overkill?</span> Get the quality of a local Singapore design partner at the speed you need. Your stunning single-page website, live in 7 days.
+                    Tired of the <span style="color: #fff;">freelancer gamble</span> and <span style="color: #fff;">agency overkill?</span> Get the quality of a local Singapore  partner at the speed you need. Your stunning single-page website, live in 7 days.
                 </p>
                 <a href="#pricing" class="cta-button glow-button">See the solution</a>
             </div>
@@ -567,8 +572,10 @@
             </div>
         </section>
 
-        <section id="faq">
+        <section id="faq" style="position: relative; overflow: hidden;">
             <div class="container max-w-3xl">
+                <div class="grid-overlay" style="mask-image: linear-gradient(to top, white 30%, transparent 100%);"></div>
+                <div class="hero-glow-element" style="opacity: 0.25;"></div>
                 <div style="text-align: center; margin-bottom: 4rem;">
                     <h2 class="section-title">Questions? We have answers</h2>
                 </div>
@@ -634,8 +641,8 @@
         </section>
 
         <section id="contact" style="position: relative; overflow: hidden;">
-            <div class="grid-overlay" style="mask-image:linear-gradient(to_bottom,white_10%,transparent_90%)"></div>
-            <div class="hero-glow-element" style="opacity: 0.25;"></div>
+            <div class="grid-overlay" style="mask-image: linear-gradient(to top, white 10%, transparent 90%);"></div>
+            <div class="hero-glow-element hero-glow" style="opacity: 0.25;"></div>
             <div class="container relative">
                 <div class="feature-card contact-card" style="text-align: center;">
                     <h2>Ready to launch in 7 days?</h2>
@@ -663,24 +670,24 @@
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            mobileMenu.style.display = mobileMenu.classList.contains('hidden') ? 'none' : 'block';
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            mobileMenu.style.display = isHidden ? 'none' : 'block';
         });
         
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const href = this.getAttribute('href');
-                const targetElement = document.querySelector(href);
+                const targetElement = document.querySelector(this.getAttribute('href'));
                 
                 if (targetElement) {
                     targetElement.scrollIntoView({ behavior: 'smooth' });
                 }
 
                 // Close mobile menu on click
-                if (window.innerWidth < 768 && !mobileMenu.classList.contains('hidden')) { // Check if on mobile
+                if (window.innerWidth < 768 && !mobileMenu.classList.contains('hidden')) {
                     mobileMenu.classList.add('hidden');
+                    mobileMenu.style.display = 'none';
                 }
             });
         });
