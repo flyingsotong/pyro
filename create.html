@@ -15,13 +15,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
             color: #E2E2E2;
             background: linear-gradient(180deg, #110f1f 0%, #0A0A0A 100%);
             overflow-x: hidden;
+        }
+        
+        .antialiased {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Animated background glow */
@@ -53,14 +57,14 @@
 
         /* Glassmorphism card style */
         .feature-card {
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* border-white/10 */
             background: rgba(17, 17, 17, 0.4);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             transition: all 0.3s ease;
         }
 
-        .feature-card:hover {
+        .feature-card:hover, .feature-card.highlight:hover {
             border-color: rgba(167, 139, 250, 0.7);
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -80,13 +84,322 @@
             transform: scale(1.05);
         }
 
+        /* Utility Classes Replacement */
+        .container {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem; /* px-6 */
+            padding-right: 1.5rem; /* px-6 */
+        }
+        @media (min-width: 640px) { .container { max-width: 640px; } }
+        @media (min-width: 768px) { .container { max-width: 768px; } }
+        @media (min-width: 1024px) { .container { max-width: 1024px; } }
+        @media (min-width: 1280px) { .container { max-width: 1024px; } } /* max-w-4xl */
+
+        .max-w-3xl { max-width: 48rem; }
+        .max-w-4xl { max-width: 1024px; }
+
+        /* Header */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .header-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 700; /* font-bold */
+            letter-spacing: -0.05em; /* tracking-tighter */
+            color: #fff;
+        }
+        .logo svg { margin-right: 0.75rem; }
+        .main-nav {
+            display: none;
+        }
+        .main-nav a {
+            color: #E2E2E2;
+            transition: color 0.3s;
+        }
+        .main-nav a:hover { color: #fff; }
+        .header-cta {
+            display: none;
+            background-color: #4F46E5; /* bg-indigo-600 */
+            color: #fff;
+            padding: 0.5rem 1.25rem; /* px-5 py-2 */
+            border-radius: 0.5rem; /* rounded-lg */
+            font-weight: 600; /* font-semibold */
+            transition: all 0.3s;
+        }
+        .header-cta:hover { background-color: #6366f1; } /* hover:bg-indigo-500 */
+        #mobile-menu-button { color: #fff; }
+        #mobile-menu {
+            display: none;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            padding-bottom: 1rem;
+        }
+        #mobile-menu a {
+            display: block;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            color: #E2E2E2;
+            transition: color 0.3s;
+        }
+        #mobile-menu a:hover { color: #fff; }
+        #mobile-menu .header-cta {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        /* Main Content */
+        .hero-section {
+            position: relative;
+            padding-top: 8rem; /* pt-32 */
+            padding-bottom: 5rem; /* pb-20 */
+            text-align: center;
+            overflow: hidden;
+        }
+        .grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 2rem 2rem;
+            mask-image: linear-gradient(to bottom, white 30%, transparent 100%);
+        }
+        .hero-section .hero-glow-element {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24rem; /* w-96 */
+            height: 24rem; /* h-96 */
+            background-color: #3730a3; /* bg-indigo-800 */
+            border-radius: 9999px;
+            filter: blur(72px); /* blur-3xl */
+            opacity: 0.2;
+        }
+        .hero-section h1 {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 800; /* font-extrabold */
+            letter-spacing: -0.05em; /* tracking-tighter */
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        .hero-section p {
+            max-width: 48rem; /* max-w-3xl */
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.125rem; /* text-lg */
+            color: #E2E2E2;
+            margin-bottom: 2rem;
+        }
+        .hero-section .cta-button {
+            display: inline-block;
+            background-color: #4F46E5;
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+        .hero-section .cta-button:hover { background-color: #6366f1; }
+
+        /* General Section Styling */
+        section { padding-top: 5rem; padding-bottom: 5rem; }
+        .section-title {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #9ca3af; /* text-gray-400 */
+            margin-bottom: 3rem;
+        }
+        .grid-container {
+            display: grid;
+            gap: 2rem;
+        }
+        .feature-card {
+            padding: 2rem;
+            border-radius: 1rem; /* rounded-2xl */
+        }
+        .feature-card.highlight {
+            border: 2px solid #4F46E5; /* border-indigo-500 */
+        }
+        .feature-card h3 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #fff;
+        }
+        .feature-card p { color: #9ca3af; }
+
+        /* Process Section */
+        #process { background-color: #111111; }
+        .process-step { text-align: center; }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 9999px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            background-color: #1f2937; /* bg-gray-800 */
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 1rem;
+        }
+
+        /* Pricing Section */
+        .pricing-card {
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid #4F46E5;
+        }
+        .price {
+            margin-top: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .price .amount {
+            font-size: 3.75rem; /* text-6xl */
+            font-weight: 800;
+            letter-spacing: -0.025em; /* tracking-tight */
+            color: #fff;
+        }
+        .price .period { color: #9ca3af; }
+        .features-list {
+            text-align: left;
+            max-width: 28rem; /* max-w-md */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .feature-item svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: #818cf8; /* text-indigo-400 */
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+        .feature-item span { color: #E2E2E2; }
+
+        /* FAQ Section */
+        #faq { background-color: #111111; }
+        .faq-item summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            list-style: none;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary span:first-child {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        .faq-item summary .icon { transition: transform 0.2s; }
+        .faq-item[open] summary .icon { transform: rotate(180deg); }
+        .faq-item p {
+            color: #9ca3af;
+            margin-top: 0.75rem;
+        }
+
+        /* Contact Section */
+        #contact .contact-card {
+            max-width: 48rem;
+            margin: auto;
+            padding: 2rem;
+        }
+        #contact h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            color: #fff;
+        }
+        #contact p {
+            font-size: 1.125rem;
+            color: #E2E2E2;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+        #contact .contact-button {
+            display: inline-block;
+            background-color: #4F46E5;
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+        #contact .contact-button:hover { background-color: #6366f1; }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            text-align: center;
+            color: #6b7280; /* text-gray-500 */
+        }
+        footer p { margin-bottom: 0.25rem; }
+
+        /* Responsive Styles */
+        @media (min-width: 768px) {
+            .main-nav { display: flex; gap: 2rem; }
+            .header-cta { display: inline-block; }
+            #mobile-menu-button { display: none; }
+            #mobile-menu { display: none !important; }
+
+            .hero-section { padding-top: 12rem; padding-bottom: 8rem; }
+            .hero-section .hero-glow-element { width: 600px; height: 600px; }
+            .hero-section h1 { font-size: 3.75rem; line-height: 1; } /* text-6xl */
+            .hero-section p { font-size: 1.25rem; } /* text-xl */
+
+            .section-title { font-size: 2.25rem; } /* md:text-4xl */
+            .grid-container { grid-template-columns: repeat(3, 1fr); }
+
+            .pricing-card { padding: 3rem; }
+            #contact h2 { font-size: 3rem; } /* md:text-5xl */
+        }
+
+        @media (min-width: 1024px) {
+            .hero-section h1 { font-size: 4.5rem; } /* lg:text-7xl */
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <header class="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-xl border-b border-white/10">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center space-x-3 text-2xl font-bold tracking-tighter text-white">
+    <header class="main-header">
+        <div class="container header-nav-container">
+            <a href="#" class="logo">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="logoGradient" x1="0" y1="0" x2="1" y2="1">
@@ -98,228 +411,221 @@
                 </svg>
                 <span>create.sg</span>
             </a>
-            <nav class="hidden md:flex space-x-8 text-gray-300">
-                <a href="#process" class="hover:text-white transition-colors">How it works</a>
-                <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
-                <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+            <nav class="main-nav">
+                <a href="#process">How it works</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
             </nav>
-            <a href="#contact" class="hidden md:inline-block bg-indigo-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-indigo-500 transition-all glow-button">Start your project</a>
-            <button id="mobile-menu-button" class="md:hidden text-white">
+            <a href="#contact" class="header-cta glow-button">Start your project</a>
+            <button id="mobile-menu-button">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
             </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
-             <a href="#process" class="block py-2 text-gray-300 hover:text-white transition-colors">How it works</a>
-             <a href="#pricing" class="block py-2 text-gray-300 hover:text-white transition-colors">Pricing</a>
-             <a href="#faq" class="block py-2 text-gray-300 hover:text-white transition-colors">FAQ</a>
-             <a href="#contact" class="block w-full text-center mt-2 bg-indigo-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-indigo-500 glow-button">Start your project</a>
+        <div id="mobile-menu">
+             <a href="#process">How it works</a>
+             <a href="#pricing">Pricing</a>
+             <a href="#faq">FAQ</a>
+             <a href="#contact" class="header-cta glow-button">Start your project</a>
         </div>
     </header>
 
     <main>
-        <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 text-center overflow-hidden">
-            <div class="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(to_bottom,white_30%,transparent_100%)]"></div>
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 md:w-[600px] md:h-[600px] bg-indigo-800 rounded-full blur-3xl opacity-20 hero-glow"></div>
-            <div class="container mx-auto px-6 relative">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter mb-4 text-white">Your business is brilliant. <br> Your website should be too.</h1>
-                <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-300 mb-8">
-                    Tired of the <span class="text-white">freelancer gamble</span> and <span class="text-white">agency overkill?</span> Get the quality of a local Singapore design partner at the speed you need. Your stunning single-page website, live in 7 days.
+        <section class="hero-section">
+            <div class="grid-overlay"></div>
+            <div class="hero-glow-element hero-glow"></div>
+            <div class="container relative">
+                <h1>Your business is brilliant. <br> Your website should be too.</h1>
+                <p>
+                    Tired of the <span style="color: #fff;">freelancer gamble</span> and <span style="color: #fff;">agency overkill?</span> Get the quality of a local Singapore design partner at the speed you need. Your stunning single-page website, live in 7 days.
                 </p>
-                <a href="#pricing" class="bg-indigo-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-indigo-500 inline-block glow-button">See the solution</a>
+                <a href="#pricing" class="cta-button glow-button">See the solution</a>
             </div>
         </section>
 
-        <section id="is-this-you" class="py-20">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto">
-                     <h2 class="text-3xl md:text-4xl font-bold tracking-tighter mb-4 text-white">Your website options shouldn't be <i>risky</i> or <i>ridiculous</i>.</h2>
-                     <p class="text-lg text-gray-400 mb-12">
+        <section id="is-this-you">
+            <div class="container">
+                <div style="text-align: center; max-width: 48rem; margin: auto;">
+                     <h2 class="section-title">Your website options shouldn't be <i>risky</i> or <i>ridiculous</i>.</h2>
+                     <p class="section-subtitle">
                          You know you need a professional online presence, but the typical choices are frustrating. We built a better way.
                      </p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="feature-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-3 text-white">The freelancer gamble</h3>
-                        <p class="text-gray-400">You found someone cheap on Fiverr, but communication is slow due to time zones, deadlines are suggestions, and you're worried they might just disappear. It’s a risk you can’t afford.</p>
+                <div class="grid-container">
+                    <div class="feature-card">
+                        <h3>The freelancer gamble</h3>
+                        <p>You found someone cheap on Fiverr, but communication is slow due to time zones, deadlines are suggestions, and you're worried they might just disappear. It’s a risk you can’t afford.</p>
                     </div>
-                    <div class="feature-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-3 text-white">The agency overkill</h3>
-                        <p class="text-gray-400">You need a sharp website, not a S$10,000 project with endless meetings and a 3-month timeline. Agencies are built for big corporations, with overhead to match.</p>
+                    <div class="feature-card">
+                        <h3>The agency overkill</h3>
+                        <p>You need a sharp website, not a S$10,000 project with endless meetings and a 3-month timeline. Agencies are built for big corporations, with overhead to match.</p>
                     </div>
-                    <div class="feature-card p-8 rounded-2xl border-2 border-indigo-500">
-                         <h3 class="text-xl font-bold mb-3 text-white">The local, 'just right' solution</h3>
-                        <p class="text-gray-400">Welcome to the sweet spot. We provide local, agency-level design and reliability with a streamlined process a freelancer would envy. One clear price, one week, zero drama.</p>
+                    <div class="feature-card highlight">
+                         <h3>The local, 'just right' solution</h3>
+                        <p>Welcome to the sweet spot. We provide local, agency-level design and reliability with a streamlined process a freelancer would envy. One clear price, one week, zero drama.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="process" class="py-20 bg-[#111111]">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-white">Go live in 3 simple steps.</h2>
-                    <p class="text-lg text-gray-400 mt-4">We've stripped away all the usual friction of getting a website built.</p>
+        <section id="process">
+            <div class="container">
+                <div style="text-align: center; max-width: 48rem; margin: auto;">
+                    <h2 class="section-title">Go live in 3 simple steps.</h2>
+                    <p class="section-subtitle" style="margin-top: 1rem;">We've stripped away all the usual friction of getting a website built.</p>
                 </div>
-                <div class="relative">
-                     <div class="hidden md:block absolute top-8 left-0 w-full h-0.5 bg-white/10 -translate-y-1/2"></div>
-                    <div class="grid md:grid-cols-3 gap-12 relative">
-                        <div class="text-center">
-                            <div class="mb-4 inline-block">
-                                <span class="flex items-center justify-center w-16 h-16 rounded-full text-2xl font-bold text-white bg-gray-800 border-2 border-white/20">1</span>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2 text-white">Send us your content</h3>
-                            <p class="text-gray-400">You provide the text, images, and your logo. We'll give you a simple guide on what we need. No guesswork.</p>
+                <div style="position: relative;">
+                    <div class="grid-container">
+                        <div class="process-step">
+                            <span class="step-number">1</span>
+                            <h3>Send us your content</h3>
+                            <p>You provide the text, images, and your logo. We'll give you a simple guide on what we need. No guesswork.</p>
                         </div>
-                        <div class="text-center">
-                            <div class="mb-4 inline-block">
-                               <span class="flex items-center justify-center w-16 h-16 rounded-full text-2xl font-bold text-white bg-gray-800 border-2 border-white/20">2</span>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2 text-white">We build & refine</h3>
-                            <p class="text-gray-400">We get to work, building your elegant, fast-loading site. We'll show you a preview and include one round of revisions to get it perfect.</p>
+                        <div class="process-step">
+                           <span class="step-number">2</span>
+                            <h3>We build & refine</h3>
+                            <p>We get to work, building your elegant, fast-loading site. We'll show you a preview and include one round of revisions to get it perfect.</p>
                         </div>
-                        <div class="text-center">
-                            <div class="mb-4 inline-block">
-                                <span class="flex items-center justify-center w-16 h-16 rounded-full text-2xl font-bold text-white bg-gray-800 border-2 border-white/20">3</span>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2 text-white">Launch in 7 days</h3>
-                            <p class="text-gray-400">Once you approve, we handle all the technical bits and launch your website. You get a stunning online presence, headache-free.</p>
+                        <div class="process-step">
+                            <span class="step-number">3</span>
+                            <h3>Launch in 7 days</h3>
+                            <p>Once you approve, we handle all the technical bits and launch your website. You get a stunning online presence, headache-free.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="who-is-this-for" class="py-20">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto">
-                     <h2 class="text-3xl md:text-4xl font-bold tracking-tighter mb-4 text-white">Designed for decisive business owners</h2>
-                     <p class="text-lg text-gray-400 mb-12">
+        <section id="who-is-this-for">
+            <div class="container">
+                <div style="text-align: center; max-width: 48rem; margin: auto;">
+                     <h2 class="section-title">Designed for decisive business owners</h2>
+                     <p class="section-subtitle">
                          Our streamlined service is a perfect fit if you are a:
                      </p>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8 text-center">
-                    <div class="feature-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-3 text-white">Consultant or Coach</h3>
-                        <p class="text-gray-400">You need a professional site to establish credibility and capture leads, without the technical headaches.</p>
+                <div class="grid-container" style="text-align: center;">
+                    <div class="feature-card">
+                        <h3>Consultant or Coach</h3>
+                        <p>You need a professional site to establish credibility and capture leads, without the technical headaches.</p>
                     </div>
-                    <div class="feature-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-3 text-white">New business or startup</h3>
-                        <p class="text-gray-400">You need to get online quickly with a polished look that inspires confidence, so you can focus on your business.</p>
+                    <div class="feature-card">
+                        <h3>New business or startup</h3>
+                        <p>You need to get online quickly with a polished look that inspires confidence, so you can focus on your business.</p>
                     </div>
-                    <div class="feature-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-3 text-white">Service professional</h3>
-                        <p class="text-gray-400">You're an expert in your field (like law or finance) and need a site that reflects your expertise and converts visitors.</p>
+                    <div class="feature-card">
+                        <h3>Service professional</h3>
+                        <p>You're an expert in your field (like law or finance) and need a site that reflects your expertise and converts visitors.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="pricing" class="py-20">
-            <div class="container mx-auto px-6 max-w-4xl">
-                 <div class="feature-card rounded-2xl p-8 md:p-12 text-center border-2 border-indigo-600">
-                     <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-white">One page, one price, zero hassle</h2>
-                     <p class="text-lg text-gray-400 mt-4 mb-8">Agency quality without the agency price tag. Everything you need for a professional online presence, bundled into one simple, transparent package.</p>
+        <section id="pricing">
+            <div class="container max-w-4xl">
+                 <div class="feature-card pricing-card">
+                     <h2 class="section-title">One page, one price, zero hassle</h2>
+                     <p class="section-subtitle" style="margin-bottom: 2rem; margin-top: 1rem;">Agency quality without the agency price tag. Everything you need for a professional online presence, bundled into one simple, transparent package.</p>
                      
-                     <div class="my-10">
-                        <span class="text-6xl font-extrabold text-white tracking-tight">S$1,499</span>
-                        <span class="text-gray-400"> one-time fee</span>
+                     <div class="price">
+                        <span class="amount">S$1,499</span>
+                        <span class="period"> one-time fee</span>
                      </div>
                      
-                     <div class="text-left max-w-md mx-auto space-y-4">
-                         <div class="flex items-start">
-                             <svg class="w-6 h-6 text-indigo-400 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                             <span class="text-gray-300">Custom-designed single-page website</span>
+                     <div class="features-list">
+                         <div class="feature-item">
+                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                             <span>Custom-designed single-page website</span>
                          </div>
-                         <div class="flex items-start">
-                             <svg class="w-6 h-6 text-indigo-400 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                             <span class="text-gray-300">Fully responsive for mobile, tablet, and desktop</span>
+                         <div class="feature-item">
+                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                             <span>Fully responsive for mobile, tablet, and desktop</span>
                          </div>
-                          <div class="flex items-start">
-                             <svg class="w-6 h-6 text-indigo-400 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                             <span class="text-gray-300">Blazing-fast performance for better SEO</span>
+                          <div class="feature-item">
+                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                             <span>Blazing-fast performance for better SEO</span>
                          </div>
-                         <div class="flex items-start">
-                             <svg class="w-6 h-6 text-indigo-400 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                             <span class="text-gray-300">Basic on-page SEO setup</span>
+                         <div class="feature-item">
+                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                             <span>Basic on-page SEO setup</span>
                          </div>
-                         <div class="flex items-start">
-                             <svg class="w-6 h-6 text-indigo-400 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                             <span class="text-gray-300">Contact form linked to your email</span>
+                         <div class="feature-item">
+                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                             <span>Contact form linked to your email</span>
                          </div>
-                         <div class="flex items-start">
-                             <svg class="w-6 h-6 text-indigo-400 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                              <span class="text-gray-300">1 year of hosting and domain name included*</span>
+                         <div class="feature-item">
+                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                              <span>1 year of hosting and domain name included*</span>
                          </div>
                      </div>
-                     <p class="text-xs text-gray-500 mt-4">*Applies to new domain registrations. Renewals are at standard rates.</p>
+                     <p style="font-size: 0.75rem; color: #6b7280; margin-top: 1rem;">*Applies to new domain registrations. Renewals are at standard rates.</p>
 
-                     <a href="#contact" class="mt-10 bg-indigo-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-indigo-500 inline-block glow-button">Let's get started</a>
+                     <a href="#contact" class="cta-button glow-button" style="margin-top: 2.5rem;">Let's get started</a>
                  </div>
             </div>
         </section>
 
-        <section id="faq" class="py-20 bg-[#111111]">
-            <div class="container mx-auto px-6 max-w-3xl">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-white">Questions? We have answers</h2>
+        <section id="faq">
+            <div class="container max-w-3xl">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <h2 class="section-title">Questions? We have answers</h2>
                 </div>
-                <div class="space-y-6">
-                    <details class="faq-item pt-4 pb-4 group">
-                        <summary class="flex justify-between items-center cursor-pointer list-none">
-                            <span class="text-lg font-semibold text-white">How are you different from a freelancer or an agency?</span>
-                            <span class="transition group-open:rotate-180">
+                <div>
+                    <details class="faq-item" style="padding-top: 1rem; padding-bottom: 1rem;">
+                        <summary>
+                            <span>How are you different from a freelancer or an agency?</span>
+                            <span class="icon">
                                 <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
                             </span>
                         </summary>
-                        <p class="text-gray-400 mt-3 group-open:animate-fadeIn">
+                        <p>
                            We're the best of both worlds. You get the dedicated, personal service and speed of a top-tier freelancer, combined with the structured process, reliability, and polish of a creative agency. We've eliminated the unreliability of the former and the expensive overhead of the latter to create a service that's perfect for decisive business owners who value quality and time.
                         </p>
                     </details>
-                    <details class="faq-item pt-4 pb-4 group">
-                        <summary class="flex justify-between items-center cursor-pointer list-none">
-                            <span class="text-lg font-semibold text-white">What do you mean by "single-page" website?</span>
-                            <span class="transition group-open:rotate-180">
+                    <details class="faq-item" style="padding-top: 1rem; padding-bottom: 1rem;">
+                        <summary>
+                            <span>What do you mean by "single-page" website?</span>
+                            <span class="icon">
                                 <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
                             </span>
                         </summary>
-                        <p class="text-gray-400 mt-3 group-open:animate-fadeIn">
+                        <p>
                            A single-page website contains all its main sections on one long, scrolling page. It's a modern, focused, and effective way to present your business without overwhelming visitors. Think of it as the digital version of a perfect business card.
                         </p>
                     </details>
 
-                    <details class="faq-item pt-4 pb-4 group">
-                        <summary class="flex justify-between items-center cursor-pointer list-none">
-                            <span class="text-lg font-semibold text-white">What if I need more than one page?</span>
-                            <span class="transition group-open:rotate-180">
+                    <details class="faq-item" style="padding-top: 1rem; padding-bottom: 1rem;">
+                        <summary>
+                            <span>What if I need more than one page?</span>
+                            <span class="icon">
                                 <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
                             </span>
                         </summary>
-                        <p class="text-gray-400 mt-3 group-open:animate-fadeIn">
+                        <p>
                            Our service is specifically tailored for creating high-impact single-page websites. If your project requires multiple pages (like a large e-commerce store or a complex blog), we might not be the best fit right now. We believe in doing one thing, and doing it exceptionally well.
                         </p>
                     </details>
-                     <details class="faq-item pt-4 pb-4 group">
-                        <summary class="flex justify-between items-center cursor-pointer list-none">
-                            <span class="text-lg font-semibold text-white">What about domain and hosting costs after the first year?</span>
-                            <span class="transition group-open:rotate-180">
+                     <details class="faq-item" style="padding-top: 1rem; padding-bottom: 1rem;">
+                        <summary>
+                            <span>What about domain and hosting costs after the first year?</span>
+                            <span class="icon">
                                 <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
                             </span>
                         </summary>
-                        <p class="text-gray-400 mt-3 group-open:animate-fadeIn">
+                        <p>
                           The first year is on us. After that, you'll be responsible for the renewal fees. We use reliable, affordable providers, and the cost is typically around S$25/year for the domain and S$120/year for hosting. We'll provide clear instructions on how to renew when the time comes.
                         </p>
                     </details>
-                     <details class="faq-item pt-4 pb-4 group">
-                        <summary class="flex justify-between items-center cursor-pointer list-none">
-                            <span class="text-lg font-semibold text-white">Can I update the website myself later?</span>
-                            <span class="transition group-open:rotate-180">
+                     <details class="faq-item" style="padding-top: 1rem; padding-bottom: 1rem;">
+                        <summary>
+                            <span>Can I update the website myself later?</span>
+                            <span class="icon">
                                 <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
                             </span>
                         </summary>
-                        <p class="text-gray-400 mt-3 group-open:animate-fadeIn">
+                        <p>
                           Yes, you can. We build our sites with clean, high-performance code instead of a slow, complex CMS like WordPress. This is our secret to achieving top-tier speed and security. We provide a few options for updates, depending on your comfort level:<br><br><strong>1. For the Non-Technical:</strong> Most of our clients prefer to have us handle updates. We offer affordable, pay-as-you-go support for small changes to text, images, or pricing. Just send us an email, and we'll take care of it quickly.<br><br><strong>2. For the Tech-Savvy:</strong> If you're comfortable with basic HTML, we can give you access to the site's code repository. You can make edits yourself and we'll provide instructions on how to deploy the changes.
                         </p>
                     </details>
@@ -327,16 +633,16 @@
             </div>
         </section>
 
-        <section id="contact" class="py-20 relative overflow-hidden">
-            <div class="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(to_bottom,white_10%,transparent_90%)]"></div>
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-800 rounded-full blur-3xl opacity-25"></div>
-            <div class="container mx-auto px-6 relative">
-                <div class="feature-card max-w-3xl mx-auto rounded-2xl p-8 md:p-12 text-center">
-                    <h2 class="text-3xl md:text-5xl font-bold tracking-tighter text-white">Ready to launch in 7 days?</h2>
-                    <p class="text-lg text-gray-300 mt-4 mb-8">
+        <section id="contact" style="position: relative; overflow: hidden;">
+            <div class="grid-overlay" style="mask-image:linear-gradient(to_bottom,white_10%,transparent_90%)"></div>
+            <div class="hero-glow-element" style="opacity: 0.25;"></div>
+            <div class="container relative">
+                <div class="feature-card contact-card" style="text-align: center;">
+                    <h2>Ready to launch in 7 days?</h2>
+                    <p>
                         Let's create a website that does justice to your business. Drop me an email to get the conversation started. As a Singapore-based developer, I personally handle every project.
                     </p>
-                    <a href="mailto:alan@create.sg?subject=New Website Project Inquiry" class="bg-indigo-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-indigo-500 inline-block glow-button">
+                    <a href="mailto:alan@create.sg?subject=New Website Project Inquiry" class="contact-button glow-button">
                        alan@create.sg
                     </a>
                 </div>
@@ -344,8 +650,8 @@
         </section>
     </main>
     
-    <footer class="border-t border-white/10 py-8">
-        <div class="container mx-auto px-6 text-center text-gray-500 space-y-1">
+    <footer>
+        <div class="container">
             <p>&copy; <span id="copyright-year">2025</span> create.sg.</p>
             <p>A ridiculously efficient web design service in Singapore. 🇸🇬</p>
         </div>
@@ -358,20 +664,22 @@
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
+            mobileMenu.style.display = mobileMenu.classList.contains('hidden') ? 'none' : 'block';
         });
         
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetElement = document.querySelector(this.getAttribute('href'));
-                if(targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                const href = this.getAttribute('href');
+                const targetElement = document.querySelector(href);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
                 }
+
                 // Close mobile menu on click
-                if (!mobileMenu.classList.contains('hidden')) {
+                if (window.innerWidth < 768 && !mobileMenu.classList.contains('hidden')) { // Check if on mobile
                     mobileMenu.classList.add('hidden');
                 }
             });
