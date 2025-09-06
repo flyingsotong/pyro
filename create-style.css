@@ -151,10 +151,14 @@ ul {
 }
 
 .card {
-    background-color: var(--color-bg-dark);
+    /* Enhanced Glass effect */
+    background-color: rgba(20, 20, 20, 0.4); /* Slightly more transparent */
     padding: 2rem;
     border-radius: var(--radius);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18); /* Brighter border to catch the glow */
+    backdrop-filter: blur(12px); /* More blur */
+    -webkit-backdrop-filter: blur(12px); /* For Safari support */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 20px rgba(255, 255, 255, 0.06); /* Depth shadow + subtle white glow */
 }
 
 .card--highlight {
