@@ -157,14 +157,22 @@ body::before {
     font-weight: 700; /* font-bold */
     letter-spacing: -0.05em; /* tracking-tighter */
     color: var(--color-text-light);
+    text-decoration: none;
 }
-.logo svg { margin-right: 0.75rem; }
+.logo-symbol {
+    color: var(--color-primary-highlight);
+    margin-right: 0.5rem;
+    font-weight: 800;
+    line-height: 1;
+    padding-bottom: 0.125rem; /* Optical alignment */
+}
 .main-nav {
     display: none;
 }
 .main-nav a {
     color: var(--color-text-base);
     transition: color 0.3s;
+    text-decoration: none;
 }
 .main-nav a:hover { color: var(--color-text-light); }
 .header-cta {
@@ -175,6 +183,7 @@ body::before {
     border-radius: 0.5rem; /* rounded-lg */
     font-weight: 600; /* font-semibold */
     transition: all 0.3s;
+    text-decoration: none;
 }
 .header-cta:hover { background-color: var(--color-primary-hover); }
 #mobile-menu-button { color: var(--color-text-light); }
@@ -189,6 +198,7 @@ body::before {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     color: var(--color-text-base);
+    text-decoration: none;
     transition: color 0.3s;
 }
 #mobile-menu a:hover { color: var(--color-text-light); }
@@ -249,6 +259,7 @@ body::before {
     border-radius: 0.5rem;
     font-weight: 700;
     font-size: 1.125rem;
+    text-decoration: none;
 }
 .hero-section .cta-button:hover { background-color: var(--color-primary-hover); }
 
@@ -389,6 +400,7 @@ section { padding-top: 5rem; padding-bottom: 5rem; }
     border-radius: 0.5rem;
     font-weight: 700;
     font-size: 1.125rem;
+    text-decoration: none;
 }
 #contact .contact-button:hover { background-color: var(--color-primary-hover); }
 
