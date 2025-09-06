@@ -30,7 +30,6 @@ body {
     font-family: var(--font-main);
     color: var(--color-text-base);
     background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-dark) 100%);
-    overflow-x: hidden;
 }
 
 .antialiased {
@@ -41,13 +40,14 @@ body {
 /* Animated background glow */
 body::before {
     content: '';
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100%;
+    height: 100%;
     background: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.1), transparent 40%),
                 radial-gradient(circle at 80% 90%, rgba(120, 80, 200, 0.1), transparent 40%);
+    overflow: hidden; /* This is the key fix */
     z-index: -1;
     animation: moveGlow 20s infinite alternate ease-in-out;
 }
