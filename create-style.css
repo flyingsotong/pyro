@@ -437,8 +437,8 @@ footer p { margin-bottom: 0.25rem; }
 /* Responsive Styles */
 @media (min-width: 768px) {
     .main-nav { display: flex; gap: 2rem; }
-    .header-cta { display: none; }
-    #mobile-menu-button { display: block; } /* JS now handles menu display, not this */
+    .header-cta { display: inline-block; }
+    #mobile-menu-button { display: none; }
     #mobile-menu { display: none !important; }
 
     .hero-section { padding-top: 12rem; padding-bottom: 8rem; }

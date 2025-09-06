@@ -293,16 +293,10 @@
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenuButton.addEventListener('click', () => {
-                console.log('Mobile menu button clicked!');
                 const isOpen = mobileMenu.classList.toggle('is-open');
                 mobileMenuButton.setAttribute('aria-expanded', isOpen);
             });
 
-            // Trigger click after 5 seconds
-            setTimeout(() => {
-                mobileMenuButton.click();
-            }, 5000);
-            
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
@@ -314,7 +308,7 @@
                     }
 
                     // Close mobile menu on click
-                    if (window.innerWidth < 768 && mobileMenu.classList.contains('is-open')) {
+                    if (mobileMenu.classList.contains('is-open')) {
                         mobileMenu.classList.remove('is-open');
                         mobileMenuButton.setAttribute('aria-expanded', 'false');
                     }
