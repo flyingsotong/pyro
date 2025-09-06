@@ -9,8 +9,9 @@
     --color-light: #FFFFFF;
     --color-text: #E2E2E2;
     --color-text-muted: #9ca3af;
-    --color-bg-dark: #111111;
-    --font-family-base: 'Inter', sans-serif;
+    --color-bg-dark: #111111; 
+    --font-family-body: 'Figtree', sans-serif;
+    --font-family-heading: 'Sora', sans-serif;
     --container-width: 1024px;
     --container-padding: 1.5rem;
     --radius: 0.5rem;
@@ -35,7 +36,7 @@ html {
 }
 
 body {
-    font-family: var(--font-family-base);
+    font-family: var(--font-family-body);
     background-color: var(--color-dark);
     color: var(--color-text);
     line-height: 1.6;
@@ -44,12 +45,13 @@ body {
 }
 
 h1, h2, h3 {
+    font-family: var(--font-family-heading);
     color: var(--color-light);
     line-height: 1.2;
-    font-weight: 700;
+    font-weight: 800; /* Using a heavier weight for Sora */
 }
 
-h1 { font-size: 2.5rem; }
+h1 { font-size: 2.5rem; font-weight: 800; }
 h2 { font-size: 2rem; }
 h3 { font-size: 1.25rem; }
 

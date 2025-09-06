@@ -7,7 +7,7 @@
     <meta name="description" content="Tired of unreliable freelancers and expensive agencies? Create.sg delivers elegant, high-performance single-page websites for Singaporean businesses in just one week.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&family=Sora:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="create-style.css">
     <style>
         .hero {
@@ -18,13 +18,22 @@
         }
         .gradient-wrapper {
             /* A more prominent gradient that starts with the theme color and fades to the dark background over a longer distance. */
-            background: linear-gradient(180deg, var(--color-primary) 0%, #0A0A0A 60%);
+            background: linear-gradient(180deg, rgba(79, 70, 229, 0.5) 0%, #0A0A0A 85%);
             position: relative;
             overflow: hidden; /* To contain any pseudo-elements if added later */
         }
         /* Ensure the second section within the wrapper has a transparent background to show the gradient */
         .gradient-wrapper .section {
             background-color: transparent;
+        }
+        /* A new gradient for the "Process" and "FAQ" sections */
+        .gradient-bg-1 {
+            background: linear-gradient(180deg, #0A0A0A 0%, #1a183d 50%, #0A0A0A 100%);
+        }
+        /* A new gradient for the "Contact" section to lead into the footer */
+        .gradient-bg-2 {
+            background: linear-gradient(180deg, #111111 0%, rgba(79, 70, 229, 0.5) 150%);
+            padding-bottom: 6rem; /* Add extra padding to show off the gradient */
         }
     </style>
 </head>
@@ -79,7 +88,7 @@
             </section>
         </div>
 
-        <section class="section section--dark" id="process">
+        <section class="section section--dark gradient-bg-1" id="process">
             <div class="container">
                 <h2 class="section__title">Go live in 3 simple steps.</h2>
                 <p class="section__subtitle">We've stripped away all the usual friction of getting a website built.</p>
@@ -194,7 +203,7 @@
             </div>
         </section>
 
-        <section class="section" id="contact">
+        <section class="section gradient-bg-2" id="contact">
             <div class="container container--narrow">
                 <div class="card text-center">
                     <h2 class="section__title">Ready to launch in 7 days?</h2>
