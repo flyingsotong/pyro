@@ -97,6 +97,24 @@ body {
 .max-w-3xl { max-width: 48rem; }
 .max-w-4xl { max-width: 1024px; }
 
+/* Reusable component classes to replace inline styles */
+.section-header { text-align: center; max-width: 48rem; margin-left: auto; margin-right: auto; }
+.text-center { text-align: center; }
+.relative { position: relative; }
+.overflow-hidden { overflow: hidden; }
+.opacity-25 { opacity: 0.25; }
+.p-8 { padding: 2rem; }
+.sm\:p-6 { padding: 1.5rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-xs { font-size: 0.75rem; }
+.text-muted { color: var(--color-text-muted); }
+.mb-0 { margin-bottom: 0; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-12 { margin-bottom: 3rem; }
+.mb-16 { margin-bottom: 4rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-10 { margin-top: 2.5rem; }
+
 /* Utility class for toggling visibility */
 .hidden {
     display: none;
@@ -164,12 +182,16 @@ body {
 .header-cta:hover { background-color: var(--color-primary-hover); }
 #mobile-menu-button { color: var(--color-text-light); }
 #mobile-menu {
-    display: none;
+    max-height: 0;
+    overflow: hidden;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-    padding-bottom: 1rem;
+    transition: max-height 0.3s ease-out, padding-bottom 0.3s ease-out;
 }
-#mobile-menu a {
+#mobile-menu.is-open {
+    max-height: 500px; /* Large enough to not clip content */
+    padding-bottom: 1rem;
+}#mobile-menu a {
     display: block;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
@@ -182,12 +204,13 @@ body {
     display: block;
     width: 100%;
     text-align: center;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.75rem 1.25rem;
 }
 
 /* Main Content */
 main {
-    /* This is the definitive fix: It contains the .hero-glow box-shadow
+    /* This contains the .hero-glow box-shadow
        and prevents it from causing horizontal page overflow. */
     overflow: hidden;
 }
@@ -205,6 +228,12 @@ main {
     background-size: 2rem 2rem;
     mask-image: linear-gradient(to bottom, white 30%, transparent 100%);
 }
+.faq-grid-overlay {
+    mask-image: linear-gradient(to top, white 30%, transparent 100%);
+}
+.contact-grid-overlay {
+    mask-image: linear-gradient(to top, white 10%, transparent 90%);
+}
 .hero-section .hero-glow-element {
     position: absolute;
     top: 50%;
@@ -218,7 +247,7 @@ main {
     opacity: 0.2;
 }
 .hero-section h1 {
-    font-size: 2.25rem; /* text-4xl */
+    font-size: 1.875rem; /* text-3xl, reduced for mobile */
     font-weight: 800; /* font-extrabold */
     letter-spacing: -0.05em; /* tracking-tighter */
     margin-bottom: 1rem;
@@ -256,7 +285,7 @@ section { padding-top: 5rem; padding-bottom: 5rem; }
 .section-subtitle {
     font-size: 1.125rem;
     color: var(--color-text-muted);
-    margin-bottom: 3rem;
+    /* margin-bottom is now controlled by utility classes */
 }
 .grid-container {
     display: grid;
@@ -297,16 +326,16 @@ section { padding-top: 5rem; padding-bottom: 5rem; }
 
 /* Pricing Section */
 .pricing-card {
-    padding: 2rem;
+    padding: 1.5rem; /* Reduced padding for mobile */
     text-align: center;
     border: 2px solid var(--color-primary-border);
 }
 .price {
-    margin-top: 2.5rem;
+    margin-top: 1.5rem; /* Reduced from 2.5rem to account for p removal */
     margin-bottom: 2.5rem;
 }
 .price .amount {
-    font-size: 3.75rem; /* text-6xl */
+    font-size: 3rem; /* text-5xl, reduced for mobile */
     font-weight: 800;
     letter-spacing: -0.025em; /* tracking-tight */
     color: var(--color-text-light);
@@ -359,10 +388,10 @@ section { padding-top: 5rem; padding-bottom: 5rem; }
 #contact .contact-card {
     max-width: 48rem;
     margin: auto;
-    padding: 2rem;
+    padding: 2rem; /* Reduced padding for mobile */
 }
 #contact h2 {
-    font-size: 1.875rem;
+    font-size: 1.5rem; /* Reduced for mobile */
     font-weight: 700;
     letter-spacing: -0.05em;
     color: var(--color-text-light);
@@ -399,21 +428,26 @@ footer p { margin-bottom: 0.25rem; }
 @media (min-width: 768px) {
     .main-nav { display: flex; gap: 2rem; }
     .header-cta { display: inline-block; }
-    #mobile-menu-button { display: none; }
+    #mobile-menu-button { display: none; } /* JS now handles menu display, not this */
     #mobile-menu { display: none !important; }
 
     .hero-section { padding-top: 12rem; padding-bottom: 8rem; }
     .hero-section .hero-glow-element { width: 600px; height: 600px; }
-    .hero-section h1 { font-size: 3.75rem; line-height: 1; } /* text-6xl */
+    .hero-section h1 { font-size: 3rem; line-height: 1.1; } /* text-5xl */
     .hero-section p { font-size: 1.25rem; } /* text-xl */
 
     .section-title { font-size: 2.25rem; } /* md:text-4xl */
     .grid-container { grid-template-columns: repeat(3, 1fr); }
 
     .pricing-card { padding: 3rem; }
+    .price .amount { font-size: 3.75rem; } /* text-6xl */
+    .price { margin-top: 2.5rem; }
+    #contact .contact-card { padding: 4rem; }
     #contact h2 { font-size: 3rem; } /* md:text-5xl */
+
+    .sm\:p-6 { padding: 1.5rem; } /* Reset for larger screens if needed */
 }
 
 @media (min-width: 1024px) {
-    .hero-section h1 { font-size: 4.5rem; } /* lg:text-7xl */
+    .hero-section h1 { font-size: 3.75rem; } /* lg:text-6xl */
 }
