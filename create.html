@@ -1,339 +1,233 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create.sg - Stunning websites for Singapore businesses in 7 days</title>
     <meta name="description" content="Tired of unreliable freelancers and expensive agencies? Create.sg delivers elegant, high-performance single-page websites for Singaporean businesses in just one week.">
-    <meta name="keywords" content="web design singapore, small business website singapore, landing page design, web development singapore, fast website creation, create.sg">
-    <meta property="og:title" content="Create.sg - Stunning websites for Singapore businesses in 7 days">
-    <meta property="og:description" content="Get a beautiful, fast, and effective single-page website for your Singapore business. Our process is simple, our pricing is transparent, and your site is live in a week.">
-    <meta property="og:image" content="https://placehold.co/1200x630/0a0a0a/ffffff?text=create.sg">
-    <meta property="og:url" content="https://www.create.sg">
-    <meta name="twitter:card" content="summary_large_image">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="create-style.css">
 </head>
-<body class="antialiased">
+<body>
 
-    <header class="main-header">
-        <div class="container header-nav-container">
-            <a href="#" class="logo">
-                <span class="logo-symbol">&gt;&gt;</span>
-                <span>create.sg</span>
+    <header class="header">
+        <div class="container header__container">
+            <a href="#" class="header__logo">
+                <span>&gt;&gt;</span> create.sg
             </a>
-            <nav class="main-nav">
+            <nav class="header__nav">
                 <a href="#process">How it works</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#faq">FAQ</a>
             </nav>
-            <a href="#contact" class="header-cta glow-button">Start your project</a>
-            <button id="mobile-menu-button" aria-label="Toggle navigation menu" aria-controls="mobile-menu" aria-expanded="false">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
+            <a href="#contact" class="button header__cta">Start your project</a>
+            <button class="header__menu-toggle" id="menu-toggle" aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
-        </div>
-        <div id="mobile-menu">
-             <a href="#process">How it works</a>
-             <a href="#pricing">Pricing</a>
-             <a href="#faq">FAQ</a>
-             <a href="#contact" class="header-cta glow-button">Start your project</a>
         </div>
     </header>
 
     <main>
-        <section class="hero-section">
-            <div class="grid-overlay"></div>
-            <div class="hero-glow-element hero-glow"></div>
-            <div class="container relative">
-                <h1>Your business is brilliant. <br> Your website should be too.</h1>
-                <p>
-                    Tired of the <span style="color: #fff;">freelancer gamble</span> and <span style="color: #fff;">agency overkill?</span> Get the quality of a local Singapore  partner at the speed you need. Your stunning single-page website, live in 7 days.
-                </p>
-                <a href="#pricing" class="cta-button glow-button">See the solution</a>
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero__title">Your business is brilliant. <br> Your website should be too.</h1>
+                <p class="hero__subtitle">Tired of the freelancer gamble and agency overkill? Get the quality of a local Singapore partner at the speed you need. Your stunning single-page website, live in 7 days.</p>
+                <a href="#pricing" class="button hero__cta">See the solution</a>
             </div>
         </section>
 
-        <section id="is-this-you">
+        <section class="section">
             <div class="container">
-                <div class="section-header fade-in-up">
-                     <h2 class="section-title">Your website options shouldn't be <em>risky</em> or <em>ridiculous</em>.</h2>
-                     <p class="section-subtitle mb-12">
-                         You know you need a professional online presence, but the typical choices are frustrating. We built a better way.
-                     </p>
-                </div>
-
-                <div class="grid-container fade-in-up">
-                    <div class="feature-card">
-                        <h3>The freelancer gamble</h3>
-                        <p>You found someone cheap on Fiverr, but communication is slow due to time zones, deadlines are suggestions, and you're worried they might just disappear. It’s a risk you can’t afford.</p>
+                <h2 class="section__title">Your website options shouldn't be <em>risky</em> or <em>ridiculous</em>.</h2>
+                <p class="section__subtitle">You know you need a professional online presence, but the typical choices are frustrating. We built a better way.</p>
+                <div class="grid grid--3">
+                    <div class="card">
+                        <h3 class="card__title">The freelancer gamble</h3>
+                        <p>You found someone cheap on Fiverr, but communication is slow, deadlines are suggestions, and you're worried they might just disappear. It’s a risk you can’t afford.</p>
                     </div>
-                    <div class="feature-card">
-                        <h3>The agency overkill</h3>
+                    <div class="card">
+                        <h3 class="card__title">The agency overkill</h3>
                         <p>You need a sharp website, not a S$10,000 project with endless meetings and a 3-month timeline. Agencies are built for big corporations, with overhead to match.</p>
                     </div>
-                    <div class="feature-card highlight">
-                         <h3>The local, 'just right' solution</h3>
+                    <div class="card card--highlight">
+                        <h3 class="card__title">The local, 'just right' solution</h3>
                         <p>Welcome to the sweet spot. We provide local, agency-level design and reliability with a streamlined process a freelancer would envy. One clear price, one week, zero drama.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="process">
+        <section class="section section--dark" id="process">
             <div class="container">
-                <div class="section-header fade-in-up">
-                    <h2 class="section-title">Go live in 3 simple steps.</h2>
-                    <p class="section-subtitle mt-4 mb-12">We've stripped away all the usual friction of getting a website built.</p>
-                </div>
-                <div class="fade-in-up relative">
-                    <div class="grid-container ">
-                        <div class="process-step">
-                            <span class="step-number">1</span>
-                            <h3>Send us your content</h3>
-                            <p>You provide the text, images, and your logo. We'll give you a simple guide on what we need. No guesswork.</p>
-                        </div>
-                        <div class="process-step">
-                           <span class="step-number">2</span>
-                            <h3>We build & refine</h3>
-                            <p>We get to work, building your elegant, fast-loading site. We'll show you a preview and include one round of revisions to get it perfect.</p>
-                        </div>
-                        <div class="process-step">
-                            <span class="step-number">3</span>
-                            <h3>Launch in 7 days</h3>
-                            <p>Once you approve, we handle all the technical bits and launch your website. You get a stunning online presence, headache-free.</p>
-                        </div>
+                <h2 class="section__title">Go live in 3 simple steps.</h2>
+                <p class="section__subtitle">We've stripped away all the usual friction of getting a website built.</p>
+                <div class="grid grid--3">
+                    <div class="process-step">
+                        <div class="process-step__number">1</div>
+                        <h3 class="process-step__title">Send us your content</h3>
+                        <p>You provide the text, images, and your logo. We'll give you a simple guide on what we need. No guesswork.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-step__number">2</div>
+                        <h3 class="process-step__title">We build & refine</h3>
+                        <p>We get to work, building your elegant, fast-loading site. We'll show you a preview and include one round of revisions to get it perfect.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-step__number">3</div>
+                        <h3 class="process-step__title">Launch in 7 days</h3>
+                        <p>Once you approve, we handle all the technical bits and launch your website. You get a stunning online presence, headache-free.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="who-is-this-for">
+        <section class="section">
             <div class="container">
-                <div class="section-header fade-in-up">
-                     <h2 class="section-title">Designed for decisive business owners</h2>
-                     <p class="section-subtitle mb-12">
-                         Our streamlined service is a perfect fit if you are a:
-                     </p>
-                </div>
-                <div class="grid-container fade-in-up text-center">
-                    <div class="feature-card">
-                        <h3>Consultant or coach</h3>
+                <h2 class="section__title">Designed for decisive business owners</h2>
+                <p class="section__subtitle">Our streamlined service is a perfect fit if you are a:</p>
+                <div class="grid grid--3">
+                    <div class="card">
+                        <h3 class="card__title">Consultant or coach</h3>
                         <p>You need a professional site to establish credibility and capture leads, without the technical headaches.</p>
                     </div>
-                    <div class="feature-card">
-                        <h3>New business or startup</h3>
+                    <div class="card">
+                        <h3 class="card__title">New business or startup</h3>
                         <p>You need to get online quickly with a polished look that inspires confidence, so you can focus on your business.</p>
                     </div>
-                    <div class="feature-card">
-                        <h3>Service professional</h3>
+                    <div class="card">
+                        <h3 class="card__title">Service professional</h3>
                         <p>You're an expert in your field (like law or finance) and need a site that reflects your expertise and converts visitors.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="showcase">
-            <div class="container max-w-4xl">
-                <div class="feature-card fade-in-up text-center p-8 sm:p-6">
-                    <h2 class="section-title text-2xl mb-2">This page is a live demo</h2>
-                    <p class="section-subtitle mb-0">
-                        You're looking at a real example of what we build. This site was created using our exact 7-day process. It's fast, fully responsive, and designed to turn visitors into customers. This is the level of quality and performance you can expect.
-                    </p>
+        <section class="section section--dark">
+            <div class="container container--narrow">
+                <div class="card text-center">
+                    <h2 class="section__title">This page is a live demo</h2>
+                    <p class="section__subtitle">You're looking at a real example of what we build. This site was created using our exact 7-day process. It's fast, fully responsive, and designed to turn visitors into customers. This is the level of quality and performance you can expect.</p>
                 </div>
             </div>
         </section>
 
-        <section id="pricing">
-            <div class="container max-w-4xl">
-                 <div class="feature-card pricing-card fade-in-up">
-                     <h2 class="section-title">One page, one price, zero hassle</h2>
-                     <p class="section-subtitle mt-4 mb-8">Agency quality without the agency price tag. Everything you need for a professional online presence, bundled into one simple, transparent package.</p>
-                     
-                     <div class="price">
-                        <span class="amount">S$1,499</span>
-                        <span class="period"> one-time fee</span>
-                     </div>
-                     
-                     <div class="features-list">
-                         <div class="feature-item">
-                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                             <span>Custom-designed single-page website</span>
-                         </div>
-                         <div class="feature-item">
-                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                             <span>Fully responsive for mobile, tablet, and desktop</span>
-                         </div>
-                          <div class="feature-item">
-                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                             <span>Blazing-fast performance for better SEO</span>
-                         </div>
-                         <div class="feature-item">
-                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                             <span>Basic on-page SEO setup</span>
-                         </div>
-                         <div class="feature-item">
-                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                             <span>Contact form linked to your email</span>
-                         </div>
-                         <div class="feature-item">
-                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                              <span>1 year of hosting and domain name included*</span>
-                         </div>
-                     </div>
-                     <p class="text-xs text-muted mt-4">*Applies to new domain registrations. Renewals are at standard rates.</p>
-
-                     <a href="#contact" class="cta-button glow-button mt-10">Let's get started</a>
-                 </div>
+        <section class="section" id="pricing">
+            <div class="container container--narrow">
+                <div class="card card--highlight text-center">
+                    <h2 class="section__title">One page, one price, zero hassle</h2>
+                    <p class="section__subtitle">Agency quality without the agency price tag. Everything you need for a professional online presence, bundled into one simple, transparent package.</p>
+                    <div class="pricing">
+                        <div class="pricing__amount">S$1,499</div>
+                        <div class="pricing__period">one-time fee</div>
+                    </div>
+                    <ul class="features-list">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>Custom-designed single-page website</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>Fully responsive for mobile, tablet, and desktop</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>Blazing-fast performance for better SEO</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>Basic on-page SEO setup</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>Contact form linked to your email</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>1 year of hosting and domain name included*</li>
+                    </ul>
+                    <p class="text-small">*Applies to new domain registrations. Renewals are at standard rates.</p>
+                    <a href="#contact" class="button">Let's get started</a>
+                </div>
             </div>
         </section>
 
-        <section id="faq" class="relative overflow-hidden">
-            <div class="container max-w-3xl">
-                <div class="grid-overlay faq-grid-overlay"></div>
-                <div class="hero-glow-element opacity-25"></div>
-                <div class="section-header fade-in-up mb-16">
-                    <h2 class="section-title">Questions? We have answers</h2>
-                </div>
-                <div class="fade-in-up">
-                    <details class="faq-item">
-                        <summary>
-                            <span>How are you different from a freelancer or an agency?</span>
-                            <span class="icon">
-                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <p>
-                           We're the best of both worlds. You get the dedicated, personal service and speed of a top-tier freelancer, combined with the structured process, reliability, and polish of a creative agency. We've eliminated the unreliability of the former and the expensive overhead of the latter to create a service that's perfect for decisive business owners who value quality and time.
-                        </p>
+        <section class="section section--dark" id="faq">
+            <div class="container container--narrow">
+                <h2 class="section__title">Questions? We have answers</h2>
+                <div class="faq">
+                    <details class="faq__item">
+                        <summary class="faq__question">How are you different from a freelancer or an agency?</summary>
+                        <div class="faq__answer">
+                            <p>We're the best of both worlds. You get the dedicated, personal service and speed of a top-tier freelancer, combined with the structured process, reliability, and polish of a creative agency. We've eliminated the unreliability of the former and the expensive overhead of the latter to create a service that's perfect for decisive business owners who value quality and time.</p>
+                        </div>
                     </details>
-                    <details class="faq-item">
-                        <summary>
-                            <span>What do you mean by "single-page" website?</span>
-                            <span class="icon">
-                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <p>
-                           A single-page website contains all its main sections on one long, scrolling page. It's a modern, focused, and effective way to present your business without overwhelming visitors. Think of it as the digital version of a perfect business card. Just like this page.
-                        </p>
+                    <details class="faq__item">
+                        <summary class="faq__question">What do you mean by "single-page" website?</summary>
+                        <div class="faq__answer">
+                            <p>A single-page website contains all its main sections on one long, scrolling page. It's a modern, focused, and effective way to present your business without overwhelming visitors. Think of it as the digital version of a perfect business card. Just like this page.</p>
+                        </div>
                     </details>
-
-                    <details class="faq-item">
-                        <summary>
-                            <span>What if I need more than one page?</span>
-                            <span class="icon">
-                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <p>
-                           Our service is specifically tailored for creating high-impact single-page websites. If your project requires multiple pages (like a large e-commerce store or a complex blog), we might not be the best fit right now. We believe in doing one thing, and doing it exceptionally well.
-                        </p>
+                    <details class="faq__item">
+                        <summary class="faq__question">What if I need more than one page?</summary>
+                        <div class="faq__answer">
+                            <p>Our service is specifically tailored for creating high-impact single-page websites. If your project requires multiple pages (like a large e-commerce store or a complex blog), we might not be the best fit right now. We believe in doing one thing, and doing it exceptionally well.</p>
+                        </div>
                     </details>
-                     <details class="faq-item">
-                        <summary>
-                            <span>What about domain and hosting costs after the first year?</span>
-                            <span class="icon">
-                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <p>
-                          The first year is on us. After that, you'll be responsible for the renewal fees. We use reliable, affordable providers, and the cost is typically around S$25/year for the domain and S$120/year for hosting. We'll provide clear instructions on how to renew when the time comes.
-                        </p>
+                    <details class="faq__item">
+                        <summary class="faq__question">What about domain and hosting costs after the first year?</summary>
+                        <div class="faq__answer">
+                            <p>The first year is on us. After that, you'll be responsible for the renewal fees. We use reliable, affordable providers, and the cost is typically around S$25/year for the domain and S$120/year for hosting. We'll provide clear instructions on how to renew when the time comes.</p>
+                        </div>
                     </details>
-                     <details class="faq-item">
-                        <summary>
-                            <span>Can I update the website myself later?</span>
-                            <span class="icon">
-                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <p>
-                          Yes, you can. We build our sites with clean, high-performance code instead of a slow, complex CMS like WordPress. This is our secret to achieving top-tier speed and security. We provide a few options for updates, depending on your comfort level:<br><br><strong>1. For the Non-Technical:</strong> Most of our clients prefer to have us handle updates. We offer affordable, pay-as-you-go support for small changes to text, images, or pricing. Just send us an email, and we'll take care of it quickly.<br><br><strong>2. For the Tech-Savvy:</strong> If you're comfortable with basic HTML, we can give you access to the site's code repository. You can make edits yourself and we'll provide instructions on how to deploy the changes.
-                        </p>
+                    <details class="faq__item">
+                        <summary class="faq__question">Can I update the website myself later?</summary>
+                        <div class="faq__answer">
+                            <p>Yes, you can. We build our sites with clean, high-performance code instead of a slow, complex CMS like WordPress. For small changes, we offer affordable support. For those comfortable with code, we can provide access to the site's repository for self-updates.</p>
+                        </div>
                     </details>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="relative overflow-hidden">
-            <div class="grid-overlay contact-grid-overlay"></div>
-            <div class="hero-glow-element hero-glow opacity-25"></div>
-            <div class="container relative">
-                <div class="feature-card contact-card fade-in-up text-center">
-                    <h2>Ready to launch in 7 days?</h2>
-                    <p>
-                        Let's create a website that does justice to your business. Drop me an email to get the conversation started. As a Singapore-based developer, I personally handle every project.
-                    </p>
-                    <a href="mailto:alan@create.sg?subject=New Website Project Inquiry" class="contact-button glow-button">
-                       alan@create.sg
-                    </a>
+        <section class="section" id="contact">
+            <div class="container container--narrow">
+                <div class="card text-center">
+                    <h2 class="section__title">Ready to launch in 7 days?</h2>
+                    <p>Let's create a website that does justice to your business. Drop me an email to get the conversation started. As a Singapore-based developer, I personally handle every project.</p>
+                    <a href="mailto:alan@create.sg?subject=New Website Project Inquiry" class="button">alan@create.sg</a>
                 </div>
             </div>
         </section>
     </main>
-    
-    <footer>
+
+    <footer class="footer">
         <div class="container">
-            <p>&copy; <span id="copyright-year"></span> create.sg.</p>
-            <p>A ridiculously efficient web design service in Singapore. 🇸🇬</p>
+            <p>&copy; <span id="copyright-year"></span> create.sg. A ridiculously efficient web design service in Singapore. 🇸🇬</p>
         </div>
     </footer>
 
-    
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set copyright year
             document.getElementById('copyright-year').textContent = new Date().getFullYear();
-            
-            // Mobile menu toggle
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                const isOpen = mobileMenu.classList.toggle('is-open');
-                mobileMenuButton.setAttribute('aria-expanded', isOpen);
+
+            // Mobile menu
+            const menuToggle = document.getElementById('menu-toggle');
+            const header = document.querySelector('.header');
+            const navLinks = document.querySelectorAll('.header__nav a');
+
+            menuToggle.addEventListener('click', () => {
+                header.classList.toggle('is-open');
             });
 
-            // Smooth scrolling for anchor links
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (header.classList.contains('is-open')) {
+                        header.classList.remove('is-open');
+                    }
+                });
+            });
+
+            // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    const targetElement = document.querySelector(this.getAttribute('href'));
-                    
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }
-
-                    // Close mobile menu on click
-                    if (mobileMenu.classList.contains('is-open')) {
-                        mobileMenu.classList.remove('is-open');
-                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement){
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
                     }
                 });
-            });
-
-            // Header scroll effect
-            const header = document.querySelector('.main-header');
-            window.addEventListener('scroll', () => {
-                header.classList.toggle('scrolled', window.scrollY > 10);
-            });
-
-            // Fade-in on scroll
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.fade-in-up').forEach(element => {
-                observer.observe(element);
             });
         });
     </script>
+
 </body>
 </html>
