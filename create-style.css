@@ -26,39 +26,41 @@
     --font-main: 'Inter', sans-serif;
 }
 
+/* The definitive fix: The <html> element is the ultimate container.
+   Applying overflow-x: hidden here reliably prevents all horizontal scrolling. */
+.site-container {
+    overflow-x: hidden;
+}
+
 body {
     font-family: var(--font-main);
     color: var(--color-text-base);
     background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-dark) 100%);
-    position: relative; /* Establishes a containing block for pseudo-elements */
-}
-
-.page-wrapper {
-    position: relative;
-    overflow: hidden; /* This is the key fix */
-}
-
-
-.antialiased {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    position: relative; /* Establishes a containing block for the pseudo-element */
 }
 
 /* Animated background glow */
 body::before {
     content: '';
-    position: absolute;
+    position: absolute; /* Positioned relative to the body */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.1), transparent 40%),
-                radial-gradient(circle at 80% 90%, rgba(120, 80, 200, 0.1), transparent 40%);
-    overflow: hidden;
-    z-index: -1;
+    background: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.1), transparent 40%), radial-gradient(circle at 80% 90%, rgba(120, 80, 200, 0.1), transparent 40%);
+    z-index: -1; /* Sits behind all content */
     animation: moveGlow 20s infinite alternate ease-in-out;
 }
 
+.page-content {
+    position: relative; /* Ensures content has its own stacking context */
+    z-index: 1; /* Sits above the body's pseudo-element */
+}
+
+.antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 @keyframes moveGlow {
     from {
         transform: translate(0, 0) scale(1);
