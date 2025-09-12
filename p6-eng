@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primary 6 English Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            touch-action: manipulation;
+        }
+        .quiz-container {
+            max-width: 800px;
+            width: 95%;
+        }
+        .option-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .option-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .correct {
+            background-color: #22c55e !important; /* Tailwind green-500 */
+            color: white !important;
+            border-color: #16a34a !important;
+        }
+        .incorrect {
+            background-color: #ef4444 !important; /* Tailwind red-500 */
+            color: white !important;
+            border-color: #dc2626 !important;
+        }
+        .explanation {
+            background-color: #f1f5f9; /* slate-100 */
+            border-left: 4px solid #3b82f6; /* blue-500 */
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            text-align: left;
+            color: #1e293b; /* slate-800 */
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 flex items-center justify-center min-h-screen p-4">
+
+    <div id="quiz-container" class="quiz-container bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
+        <div id="difficulty-screen">
+            <h1 class="text-3xl sm:text-4xl font-bold text-center mb-4 text-slate-700">P6 English Practice Quiz</h1>
+            <p class="text-center text-slate-600 mb-8">Please select a difficulty level to begin.</p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                 <button onclick="selectDifficulty('easy')" class="w-full bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-lg hover:bg-green-700 transition-colors duration-300 shadow-md">Easy</button>
+                 <button onclick="selectDifficulty('hard')" class="w-full bg-red-600 text-white font-bold py-3 px-6 rounded-lg text-lg hover:bg-red-700 transition-colors duration-300 shadow-md">Hard</button>
+                 <button onclick="selectDifficulty('extremelyHard')" class="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg text-lg hover:bg-indigo-700 transition-colors duration-300 shadow-md">Extremely Hard</button>
+            </div>
+        </div>
+
+        <div id="start-screen" class="hidden">
+            <h1 id="start-title" class="text-3xl sm:text-4xl font-bold text-center mb-4 text-slate-700"></h1>
+            <p class="text-center text-slate-600 mb-8">This quiz contains 50 questions compiled from 2024 Prelim papers. Focus and do your best!</p>
+            <button onclick="startQuiz()" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg hover:bg-blue-700 transition-colors duration-300 shadow-md">Start Quiz</button>
+        </div>
+
+        <div id="quiz-screen" class="hidden">
+            <div class="flex justify-between items-center mb-6">
+                <div id="question-counter" class="text-sm font-semibold text-slate-500"></div>
+                <div id="score-counter" class="text-sm font-semibold bg-blue-100 text-blue-700 px-3 py-1 rounded-full"></div>
+            </div>
+            
+            <p id="question-text" class="text-xl sm:text-2xl font-semibold mb-8 min-h-[100px]"></p>
+            
+            <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Options will be dynamically inserted here -->
+            </div>
+            
+            <div id="feedback-container" class="mt-6 text-center">
+                 <p id="feedback-text" class="font-bold text-lg"></p>
+                 <div id="explanation-text" class="explanation hidden"></div>
+                 <button id="next-btn" onclick="nextQuestion()" class="hidden mt-4 bg-slate-700 text-white font-bold py-2 px-8 rounded-lg hover:bg-slate-800 transition-colors duration-300">Next</button>
+            </div>
+        </div>
+
+        <div id="end-screen" class="hidden text-center">
+             <h2 class="text-3xl font-bold mb-4">Quiz Complete!</h2>
+             <p class="text-lg mb-2">Well done!</p>
+             <p class="text-5xl font-bold text-blue-600 mb-8" id="final-score"></p>
+             <button onclick="restartQuiz()" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg hover:bg-blue-700 transition-colors duration-300 shadow-md">Try Again</button>
+        </div>
+    </div>
+
+    <script>
+        // --- EXPANDED QUIZ BANK ---
+        const questionBank = {
+            easy: [
+                // Original + New Easy Questions
+                { question: "We should be mindful that there is ______ misinformation online.", options: ["many", "few of", "enough", "plenty of"], answer: "plenty of", explanation: "'Misinformaton' is an uncountable noun. 'Plenty of' is used to indicate a large quantity of something uncountable." },
+                { question: "This movie is ______ to understand than the book.", options: ["easy", "easier", "easily", "easiest"], answer: "easier", explanation: "The word 'than' indicates a comparison, so the comparative form 'easier' is needed." },
+                { question: "I am looking forward to ______ you at the party.", options: ["see", "sees", "seeing", "have seen"], answer: "seeing", explanation: "The phrase 'look forward to' is always followed by a verb in the gerund (-ing) form." },
+                { question: "The crowd began to disperse when the concert ______.", options: ["ended", "concluded", "finished", "finalised"], answer: "ended", explanation: "'Ended' is the most common and natural verb for an event like a concert coming to a close." },
+                { question: "My mother reminded me to be polite ______ our elders.", options: ["for", "with", "by", "to"], answer: "to", explanation: "The correct preposition to use after 'polite' is 'to' when referring to the person you are being polite towards." },
+                { question: "He plays the piano very well, ______ he?", options: ["does", "is", "hasn't", "doesn't"], answer: "doesn't", explanation: "The main statement is positive ('plays'), so the tag must be negative. The verb is in the present tense, so we use 'doesn't'." },
+                { question: "Could you buy me a ______ of bread from the store?", options: ["slice", "piece", "loaf", "bar"], answer: "loaf", explanation: "'Loaf' is the correct collective noun for a whole unit of bread." },
+                { question: "I can't help ______ proud of my team's achievement.", options: ["to feel", "but feel", "and feel", "feeling"], answer: "feeling", explanation: "The idiom 'can't help' is followed by a verb in the gerund (-ing) form. 'Can't help but' would be followed by the base verb 'feel'." },
+                { question: "She is dedicated to ______ a positive impact in her community.", options: ["make", "making", "made", "makes"], answer: "making", explanation: "The phrase 'dedicated to' requires the gerund (-ing) form of the verb that follows it." },
+                { question: "The storm's intensity has begun to ______.", options: ["subside", "decline", "vanish", "depart"], answer: "subside", explanation: "'Subside' means to become less intense or severe, which is the correct term for a storm." },
+                { question: "Downloading from unknown sites can be ______ to your computer.", options: ["benign", "helpful", "harmful", "believable"], answer: "harmful", explanation: "'Harmful' means causing or likely to cause harm, which fits the context." },
+                { question: "Everybody, including the twins, ______ excited for the school trip.", options: ["is", "are", "was", "were"], answer: "is", explanation: "The subject of the sentence is 'Everybody', which is a singular pronoun. Therefore, the singular verb 'is' is correct." },
+                { question: "The faulty product was ______ from the market.", options: ["recalled", "revoked", "reviewed", "recollected"], answer: "recalled", explanation: "'Recalled' means to officially order the return of a product because it is unsafe or defective." },
+                { question: "That is the girl ______ dog won the competition.", options: ["who", "which", "whom", "whose"], answer: "whose", explanation: "'Whose' is a possessive pronoun used to show ownership. The dog belongs to the girl." },
+                { question: "We must ______ to the rules of the game.", options: ["comply", "abide", "adhere", "follow"], answer: "adhere", explanation: "'Adhere' is followed by the preposition 'to' and means to stick to a rule or belief. 'Abide' is followed by 'by'."},
+                { question: "He has so ______ homework that he cannot go out.", options: ["many", "few", "much", "little"], answer: "much", explanation: "'Homework' is an uncountable noun. 'Much' is used to describe a large quantity of an uncountable noun."},
+                { question: "The cat is sleeping ______ the sofa.", options: ["in", "at", "on", "with"], answer: "on", explanation: "'On' is the correct preposition to indicate a position on a surface." },
+                { question: "They ______ to the cinema last night.", options: ["go", "goes", "went", "have gone"], answer: "went", explanation: "'Last night' indicates a past action, so the simple past tense 'went' is correct." },
+                { question: "She is the ______ girl in her class.", options: ["tall", "taller", "tallest", "more tall"], answer: "tallest", explanation: "When comparing more than two things, the superlative form 'tallest' is used." },
+                { question: "He enjoys ______ basketball with his friends.", options: ["play", "plays", "to play", "playing"], answer: "playing", explanation: "The verb 'enjoys' is followed by a gerund (-ing form)." },
+                { question: "There isn't ______ sugar left in the jar.", options: ["many", "some", "any", "a lot"], answer: "any", explanation: "'Any' is used in negative sentences with uncountable nouns like 'sugar'." },
+                { question: "My sister is afraid ______ spiders.", options: ["of", "from", "with", "about"], answer: "of", explanation: "The correct preposition to use with 'afraid' is 'of'." },
+                { question: "Would you like ______ cup of tea?", options: ["a", "an", "the", "some"], answer: "a", explanation: "'A' is the correct article to use before 'cup' which starts with a consonant sound." },
+                { question: "Please listen ______ to the instructions.", options: ["careful", "carefully", "care", "caring"], answer: "carefully", explanation: "'Carefully' is an adverb that modifies the verb 'listen'." },
+                { question: "The book ______ on the table is mine.", options: ["which", "who", "whom", "whose"], answer: "which", explanation: "'Which' is used to refer to things, in this case, the book." },
+                { question: "We have been waiting ______ two hours.", options: ["since", "for", "at", "in"], answer: "for", explanation: "'For' is used to indicate a duration of time." },
+                { question: "Each of the students ______ a textbook.", options: ["have", "has", "are having", "is have"], answer: "has", explanation: "'Each' is a singular pronoun, so it takes the singular verb 'has'." },
+                { question: "The opposite of 'brave' is ______.", options: ["scared", "cowardly", "fearful", "timid"], answer: "cowardly", explanation: "'Cowardly' is the direct antonym of 'brave'." },
+                { question: "A person who writes books is called an ______.", options: ["author", "artist", "actor", "athlete"], answer: "author", explanation: "An 'author' is a writer of a book, article, or report." },
+                { question: "He drove the car ______ the tunnel.", options: ["over", "through", "under", "across"], answer: "through", explanation: "'Through' is used to indicate movement from one side to the other within an enclosed space." },
+                { question: "I prefer reading books ______ watching television.", options: ["than", "from", "to", "over"], answer: "to", explanation: "The verb 'prefer' is followed by 'to' when comparing two activities." },
+                { question: "The children were making too ______ noise.", options: ["many", "much", "few", "little"], answer: "much", explanation: "'Noise' is an uncountable noun, so 'much' is used." },
+                { question: "Let's meet ______ the library at 3 p.m.", options: ["in", "on", "at", "to"], answer: "at", explanation: "'At' is used to specify a particular place or point." },
+                { question: "He promised to ______ the secret.", options: ["say", "tell", "speak", "keep"], answer: "keep", explanation: "The idiom is 'to keep a secret', meaning not to tell it to anyone." },
+                { question: "She is not only smart ______ also hardworking.", options: ["and", "or", "but", "so"], answer: "but", explanation: "The correlative conjunction 'not only' is always paired with 'but also'." },
+                { question: "The ______ was shining brightly in the sky.", options: ["moon", "sun", "star", "cloud"], answer: "sun", explanation: "The sun is the star that shines brightly during the day." },
+                { question: "A ______ of birds flew south for the winter.", options: ["herd", "pack", "flock", "school"], answer: "flock", explanation: "'Flock' is the correct collective noun for birds." },
+                { question: "You ______ finish your homework before you play.", options: ["must", "can", "may", "might"], answer: "must", explanation: "'Must' indicates a necessity or obligation." },
+                { question: "The puppy wagged ______ tail happily.", options: ["it's", "its", "it", "its'"], answer: "its", explanation: "'Its' is a possessive pronoun. 'It's' is a contraction for 'it is'." },
+                { question: "The race was very close, but he won ______ the end.", options: ["at", "on", "to", "in"], answer: "in", explanation: "The correct phrase is 'in the end', meaning 'finally' or 'eventually'." },
+                { question: "He was ______ tired to continue working.", options: ["so", "very", "too", "much"], answer: "too", explanation: "'Too' is used before an adjective to mean 'more than is desirable'." },
+                { question: "The team ______ the championship last year.", options: ["win", "wins", "won", "has won"], answer: "won", explanation: "'Last year' indicates a past event, so the simple past tense 'won' is correct." },
+                { question: "She gave me a ______ of her chocolate.", options: ["piece", "slice", "bar", "loaf"], answer: "piece", explanation: "'Piece' is a general term for a part of something." },
+                { question: "The library is closed ______ Sundays.", options: ["in", "at", "for", "on"], answer: "on", explanation: "'On' is used for specific days of the week." },
+                { question: "I didn't go to the party ______ I was feeling unwell.", options: ["so", "because", "but", "although"], answer: "because", explanation: "'Because' is used to give a reason for something." },
+                { question: "______ of the two dresses do you prefer?", options: ["What", "Which", "Who", "Whose"], answer: "Which", explanation: "'Which' is used when choosing between a limited number of options." },
+                { question: "He is good ______ mathematics.", options: ["in", "at", "on", "with"], answer: "at", explanation: "The correct phrase is 'good at' something." },
+                { question: "Can you ______ me a favour?", options: ["make", "do", "give", "take"], answer: "do", explanation: "The correct collocation is 'do someone a favour'." },
+                { question: "The train ______ at the station on time.", options: ["reached", "came", "arrived", "got"], answer: "arrived", explanation: "'Arrived' is the most appropriate verb for a train reaching its destination." },
+                { question: "This is the most ______ book I have ever read.", options: ["interest", "interesting", "interested", "interestingly"], answer: "interesting", explanation: "'Interesting' is an adjective used to describe the book." }
+            ],
+            hard: [
+                // Original + New Hard Questions
+                { question: "Neither of the boys ______ responsible for the broken window.", options: ["is", "are", "was", "were"], answer: "is", explanation: "When 'neither' is the subject, it is treated as singular. Therefore, the singular verb 'is' is correct." },
+                { question: "Before she arrived, he ______ all the preparations.", options: ["completes", "has completed", "had completed", "was completing"], answer: "had completed", explanation: "The past perfect tense ('had completed') is used here because the action of completing happened before the other past action of her arriving." },
+                { question: "He has never been to Japan, ______?", options: ["did he", "has he", "didn't he", "hasn't he"], answer: "has he", explanation: "The main statement is negative ('never been'). Therefore, the question tag must be positive. The verb is 'has been' (present perfect), so the tag is 'has he'." },
+                { question: "Hardly had the movie started ______ the power went out.", options: ["and", "than", "then", "when"], answer: "when", explanation: "'Hardly' is paired with 'when' (or 'before') to indicate one event happened immediately after another. 'No sooner' is paired with 'than'." },
+                { question: "If I ______ the consequences, I would have acted differently.", options: ["know", "knew", "had known", "would know"], answer: "had known", explanation: "This is a Type 3 conditional sentence ('would have acted'), which describes a past unreal situation. The 'if' clause must use the past perfect tense ('had known')." },
+                { question: "______ his wealth, he is not a very generous person.", options: ["Since", "Despite", "Because", "Although"], answer: "Despite", explanation: "'Despite' is a preposition used to show contrast and is followed by a noun or noun phrase ('his wealth')." },
+                { question: "To avoid being noticed, he moved through the crowd ______.", options: ["visibly", "obviously", "discreetly", "boisterously"], answer: "discreetly", explanation: "'Discreetly' means in a careful way to avoid attracting attention, which fits the context." },
+                { question: "Her plan to redecorate the house with old furniture was rather ______.", options: ["intuitive", "insightful", "ingenious", "indomitable"], answer: "ingenious", explanation: "'Ingenious' means clever and original, fitting for a creative plan." },
+                { question: "The new housing development is starting to ______ on the protected forest reserve.", options: ["invade", "intrude", "encroach", "interfere"], answer: "encroach", explanation: "'Encroach' means to gradually advance beyond usual or acceptable limits, perfectly describing the development moving into the reserve." },
+                { question: "He failed the test ______ he had studied very hard for it.", options: ["since", "hence", "because", "although"], answer: "although", explanation: "'Although' is used to introduce a statement that contrasts with the main statement. Failing contrasts with studying hard." },
+                { question: "He would not ______ his values, even for a promotion.", options: ["guard", "oppose", "degrade", "compromise"], answer: "compromise", explanation: "To 'compromise' one's values means to abandon them, which fits the context." },
+                { question: "She maintained her ______ throughout the stressful presentation.", options: ["aplomb", "assurance", "composure", "compassion"], answer: "composure", explanation: "'Composure' refers to the state of being calm and in control of one's feelings, which is what's needed in a stressful situation." },
+                { question: "\"Let me know ______ you require any assistance,\" said the librarian.", options: ["might", "could", "would", "should"], answer: "should", explanation: "In this formal or polite context, 'should' can be used instead of 'if'. It means 'if by any chance...'" },
+                { question: "He had to ______ many obstacles to achieve his dream.", options: ["exceed", "surpass", "overcome", "defeat"], answer: "overcome", explanation: "'Overcome' means to succeed in dealing with a problem or difficulty." },
+                { question: "The sportsmanship our team has shown ______ truly admirable.", options: ["is", "are", "was", "were"], answer: "is", explanation: "The subject of the sentence is 'sportsmanship' (singular), not 'team'. Therefore, a singular verb is correct." },
+                { question: "The old building, ______ has been abandoned for years, will be demolished.", options: ["that", "which", "who", "it"], answer: "which", explanation: "This is a non-defining relative clause providing extra information. 'Which' is used for things, and it must be preceded by a comma." },
+                { question: "The company had to ______ its expansion plans due to the economic downturn.", options: ["cut off", "call off", "put off", "set off"], answer: "call off", explanation: "'Call off' is a phrasal verb meaning to cancel an event or agreement." },
+                { question: "The manager's ______ praise boosted the team's morale.", options: ["sincere", "sincerely", "sincerity", "sincereness"], answer: "sincere", explanation: "'Sincere' is an adjective that modifies the noun 'praise'." },
+                { question: "The issue is far too complex ______ in a single meeting.", options: ["to resolve", "to be resolved", "for resolving", "that resolves"], answer: "to be resolved", explanation: "The passive infinitive 'to be resolved' is needed here because the issue is the object of the action of resolving." },
+                { question: "His ______ remarks were considered inappropriate for the formal occasion.", options: ["flippant", "reverent", "serious", "sombre"], answer: "flippant", explanation: "'Flippant' means not showing a serious or respectful attitude, which contrasts with a formal occasion." },
+                { question: "The detective tried to ______ the truth from the reluctant witness.", options: ["elicit", "illicit", "derive", "extract"], answer: "elicit", explanation: "'Elicit' means to evoke or draw out a response or answer from someone." },
+                { question: "I wish I ______ more time to spend with my family.", options: ["have", "has", "had", "would have"], answer: "had", explanation: "After 'I wish', the simple past tense 'had' is used to talk about a present situation you would like to be different." },
+                { question: "The students were ______ on finishing the project before the deadline.", options: ["intent", "intense", "intend", "intention"], answer: "intent", explanation: "'Intent on' is an adjective phrase meaning determined to do something." },
+                { question: "The politician's speech did not ______ to the concerns of the citizens.", options: ["address", "mention", "discuss", "refer"], answer: "address", explanation: "To 'address' a concern means to deal with or speak about it directly." },
+                { question: "Having ______ the race, the athlete collapsed from exhaustion.", options: ["finish", "finished", "finishing", "been finished"], answer: "finished", explanation: "This is a past participle clause. 'Having finished' indicates the action was completed before the main clause action." },
+                { question: "The museum has a ______ of ancient artefacts.", options: ["plethora", "dearth", "scarcity", "shortage"], answer: "plethora", explanation: "'Plethora' means a large or excessive amount of something." },
+                { question: "It is imperative that he ______ the meeting.", options: ["attends", "attend", "attended", "to attend"], answer: "attend", explanation: "After expressions like 'it is imperative that', the subjunctive mood (base form of the verb) 'attend' is used." },
+                { question: "The negotiations reached an ______, with neither side willing to compromise.", options: ["impasse", "agreement", "upsurge", "input"], answer: "impasse", explanation: "An 'impasse' is a situation in which no progress is possible, especially because of disagreement; a deadlock." },
+                { question: "She was ______ by the complexity of the instructions.", options: ["bemused", "amused", "confused", "infused"], answer: "bemused", explanation: "'Bemused' means puzzled, confused, or bewildered. It's a stronger and more nuanced word than 'confused' in this context." },
+                { question: "One of the main ______ for the job is a degree in engineering.", options: ["criteria", "criterion", "criterias", "criterions"], answer: "criterion", explanation: "'Criterion' is the singular form. 'Criteria' is plural. Since it says 'One of the main...', the singular form is required." },
+                { question: "The government implemented measures to ______ the spread of the virus.", options: ["curb", "promote", "allow", "extend"], answer: "curb", explanation: "'Curb' means to restrain or keep in check." },
+                { question: "The ______ of the two options is better in the long run.", options: ["lesser", "less", "least", "worse"], answer: "lesser", explanation: "'The lesser of two evils' is a common idiom. Here 'lesser' functions as an adjective comparing two options." },
+                { question: "The evidence was ______ and did not prove his guilt.", options: ["inconclusive", "conclusive", "definite", "decisive"], answer: "inconclusive", explanation: "'Inconclusive' means not leading to a firm conclusion; not ending doubt or dispute." },
+                { question: "He is held in high ______ by his colleagues.", options: ["esteem", "estimate", "attention", "approval"], answer: "esteem", explanation: "'High esteem' is a fixed phrase meaning respect and admiration." },
+                { question: "The team's performance was ______ by a series of injuries.", options: ["hampered", "helped", "supported", "encouraged"], answer: "hampered", explanation: "'Hampered' means to hinder or impede the movement or progress of." },
+                { question: "The documentary provides a ______ account of the historical event.", options: ["factual", "fictional", "biased", "false"], answer: "factual", explanation: "'Factual' means concerned with what is actually the case, which is expected of a documentary." },
+                { question: "His ______ to the company has been invaluable.", options: ["contribution", "distribution", "attribution", "retribution"], answer: "contribution", explanation: "'Contribution' refers to the part played by a person in bringing about a result." },
+                { question: "The new law will come into ______ next month.", options: ["force", "action", "play", "power"], answer: "force", explanation: "'Come into force' is an idiom meaning to become legally valid or effective." },
+                { question: "She has a ______ for spotting talented young artists.", options: ["knack", "habit", "desire", "tendency"], answer: "knack", explanation: "'Knack' means an acquired or natural skill at performing a task." },
+                { question: "The decision was made ______ with the company's policy.", options: ["in accordance", "in regards", "in respect", "in addition"], answer: "in accordance", explanation: "'In accordance with' is a phrase meaning in a way that agrees with or follows a rule." }
+            ],
+            extremelyHard: [
+                // Original + New Extremely Hard Questions
+                { question: "She seldom visits her grandmother, ______?", options: ["is she", "isn't she", "does she", "doesn't she"], answer: "does she", explanation: "The word 'seldom' is a negative adverb, making the statement negative. Therefore, a positive question tag is required. The verb is 'visits', so the auxiliary 'does' is used." },
+                { question: "The captain, as well as the players, ______ ready for the match.", options: ["is", "are", "was", "were"], answer: "is", explanation: "The subject is 'The captain'. The phrase 'as well as the players' is an intervening phrase and does not affect subject-verb agreement. 'Captain' is singular, so the verb must be 'is'." },
+                { question: "Not until I reached home ______ I realise my wallet was missing.", options: ["did", "have", "do", "was"], answer: "did", explanation: "This is an example of inversion. When a sentence starts with a negative phrase like 'Not until...', the subject and auxiliary verb are inverted: '...did I realise...' instead of '...I did realise...'" },
+                { question: "Had it not been for his timely intervention, the situation ______ much worse.", options: ["will be", "would be", "will have been", "would have been"], answer: "would have been", explanation: "This is an inverted Type 3 conditional sentence. 'Had it not been...' means 'If it had not been...'. The result clause of a Type 3 conditional uses 'would have been'." },
+                { question: "The committee has the ______ to approve or reject the proposal.", options: ["selection", "operation", "discretion", "permission"], answer: "discretion", explanation: "'Discretion' means the freedom and authority to decide what should be done. This is the correct term for a committee's power to make a judgment." },
+                { question: "The ancient ritual was ______ in mystery and tradition.", options: ["dived", "steeped", "drowned", "soaked"], answer: "steeped", explanation: "'Steeped in' is an idiom meaning to be completely surrounded by or filled with a quality or influence, like mystery or tradition." },
+                { question: "You can have a cake or a pie. You can't have ______.", options: ["all", "both", "neither", "either"], answer: "both", explanation: "'Both' is used to refer to two things together. The sentence means you can choose one, but not the two of them." },
+                { question: "______ he known about the traffic jam, he would have taken a different route.", options: ["If", "Should", "Were", "Had"], answer: "Had", explanation: "This is a formal, inverted way of writing a Type 3 conditional sentence. 'Had he known...' is equivalent to 'If he had known...'." },
+                { question: "The politician's speech was filled with ______ and empty promises.", options: ["hyperbole", "alliteration", "metaphor", "irony"], answer: "hyperbole", explanation: "'Hyperbole' is the use of exaggeration as a rhetorical device or figure of speech. It fits well with the idea of 'empty promises'." },
+                { question: "The ______ student was praised for his honesty in returning the lost wallet.", options: ["filial", "loyal", "conscientious", "virtuous"], answer: "virtuous", explanation: "'Virtuous' means having or showing high moral standards. This is the most fitting adjective for someone praised for their honesty." },
+                { question: "The number of applicants for the position ______ surprisingly low.", options: ["is", "are", "was", "were"], answer: "is", explanation: "The subject of the sentence is 'The number', which is always singular. Therefore, it requires a singular verb, 'is'." },
+                { question: "The team's efforts culminated ______ a spectacular victory.", options: ["with", "to", "in", "by"], answer: "in", explanation: "The verb 'culminate' is followed by the preposition 'in', meaning to reach a climax or point of highest development." },
+                { question: "His ______ arguments failed to persuade the jury.", options: ["tenuous", "tenacious", "tangible", "terse"], answer: "tenuous", explanation: "'Tenuous' means very weak or slight, which is the best word to describe arguments that are unconvincing." },
+                { question: "The king decided to ______ his claim to the throne.", options: ["relinquish", "replenish", "vanquish", "varnish"], answer: "relinquish", explanation: "'Relinquish' means to voluntarily cease to keep or claim; to give up." },
+                { question: "He was accused of being ______ in the company's financial scandal.", options: ["complicit", "compliant", "complacent", "competent"], answer: "complicit", explanation: "'Complicit' means involved with others in an illegal activity or wrongdoing." },
+                { question: "The ______ of the new policy are yet to be fully understood.", options: ["ramifications", "gratifications", "certifications", "modifications"], answer: "ramifications", explanation: "'Ramifications' are the complex or unwelcome consequences of an action or event." },
+               { question: "Faced with ______ evidence, the suspect had no choice but to confess.", options: ["incontrovertible", "inconspicuous", "incongruous", "inconsequential"], answer: "incontrovertible", explanation: "'Incontrovertible' means not able to be denied or disputed; undeniable." },
+               { question: "The professor's lecture was so ______ that many students fell asleep.", options: ["soporific", "sporadic", "spurious", "stoic"], answer: "soporific", explanation: "'Soporific' means tending to induce drowsiness or sleep." },
+               { question: "The intern tried to ______ himself with his new boss by offering to work overtime.", options: ["ingratiate", "integrate", "instigate", "initiate"], answer: "ingratiate", explanation: "'Ingratiate' means to bring oneself into favour with someone by flattering or trying to please them." },
+               { question: "Her ______ remarks at the party offended several guests.", options: ["acerbic", "affable", "amiable", "astute"], answer: "acerbic", explanation: "'Acerbic' means sharp and forthright, or tasting sour or bitter. It describes remarks that are harsh and cutting." },
+               { question: "The once-popular theory has now been thoroughly ______.", options: ["debunked", "debased", "deduced", "defaced"], answer: "debunked", explanation: "'Debunked' means to expose the falseness or hollowness of a myth, idea, or belief." },
+               { question: "He is a ______ of the arts and has donated millions to museums.", options: ["prodigy", "patron", "pauper", "paragon"], answer: "patron", explanation: "A 'patron' is a person who gives financial or other support to a person, organization, cause, or activity." },
+               { question: "The rebels attempted to ______ the government.", options: ["abase", "abate", "usurp", "unnerve"], answer: "usurp", explanation: "'Usurp' means to take a position of power or importance illegally or by force." },
+               { question: "His ______ behaviour made him unpopular with his peers.", options: ["puerile", "prudent", "prolific", "pacific"], answer: "puerile", explanation: "'Puerile' means childishly silly and trivial." },
+               { question: "The treaty was signed to ______ hostilities between the two nations.", options: ["ameliorate", "aggravate", "cease", "commence"], answer: "cease", explanation: "'Cease' means to bring or come to an end. 'Ameliorate' means to make something bad better, but 'cease' is more direct for stopping hostilities." },
+               { question: "The politician was known for his ______ speeches that could sway any audience.", options: ["mellifluous", "malevolent", "mendacious", "mercurial"], answer: "mellifluous", explanation: "'Mellifluous' means pleasant-sounding and sweet, which is a quality of a persuasive speaker." },
+               { question: "The detective uncovered a ______ of corruption within the police force.", options: ["nexus", "scion", "quagmire", "bastion"], answer: "nexus", explanation: "A 'nexus' is a connection or series of connections linking two or more things, fitting for a web of corruption." },
+               { question: "She gave a ______ shrug, feigning indifference to the news.", options: ["nonchalant", "notorious", "nascent", "noxious"], answer: "nonchalant", explanation: "'Nonchalant' means feeling or appearing casually calm and relaxed; not displaying anxiety, interest, or enthusiasm." },
+               { question: "His argument was based on a ______ premise, so his conclusion was wrong.", options: ["fallacious", "fastidious", "fatuous", "fervent"], answer: "fallacious", explanation: "'Fallacious' means based on a mistaken belief." },
+               { question: "The artist's work was a ______ of different styles and influences.", options: ["pastiche", "panacea", "parody", "paradigm"], answer: "pastiche", explanation: "A 'pastiche' is an artistic work in a style that imitates that of another work, artist, or period." }
+            ]
+        };
+
+        let quizData = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        const difficultyScreen = document.getElementById('difficulty-screen');
+        const startScreen = document.getElementById('start-screen');
+        const endScreen = document.getElementById('end-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        
+        const startTitle = document.getElementById('start-title');
+        const questionCounter = document.getElementById('question-counter');
+        const scoreCounter = document.getElementById('score-counter');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const feedbackText = document.getElementById('feedback-text');
+        const explanationText = document.getElementById('explanation-text');
+        const nextBtn = document.getElementById('next-btn');
+        const finalScoreText = document.getElementById('final-score');
+
+        function selectDifficulty(level) {
+            const bank = questionBank[level];
+            const shuffledBank = [...bank].sort(() => 0.5 - Math.random());
+            
+            let quizLength = 50;
+            // Ensure we don't try to select more questions than are available in the bank
+            if (bank.length < 50) {
+                quizLength = bank.length;
+            }
+
+            quizData = shuffledBank.slice(0, quizLength);
+
+            difficultyScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+            let levelName = level.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+            startTitle.textContent = `P6 English Quiz (${levelName})`;
+        }
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            updateScoreDisplay();
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            feedbackText.textContent = '';
+            explanationText.classList.add('hidden');
+            nextBtn.classList.add('hidden');
+            optionsContainer.innerHTML = '';
+
+            const currentQuestion = quizData[currentQuestionIndex];
+            questionCounter.textContent = `Question ${currentQuestionIndex + 1}/${quizData.length}`;
+            questionText.textContent = currentQuestion.question;
+
+            currentQuestion.options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.classList.add('option-btn', 'w-full', 'p-4', 'border-2', 'border-slate-300', 'rounded-lg', 'text-left', 'text-lg', 'bg-slate-50', 'hover:bg-slate-200', 'hover:border-slate-400');
+                button.onclick = () => selectAnswer(button, option);
+                optionsContainer.appendChild(button);
+            });
+        }
+        
+        function updateScoreDisplay() {
+            const currentTotal = quizData.length;
+            scoreCounter.textContent = `Score: ${score}/${currentTotal}`;
+        }
+
+        function selectAnswer(button, selectedOption) {
+            Array.from(optionsContainer.children).forEach(btn => {
+                btn.disabled = true;
+                btn.style.cursor = 'not-allowed';
+            });
+            
+            const currentQuestion = quizData[currentQuestionIndex];
+            const isCorrect = selectedOption === currentQuestion.answer;
+
+            if (isCorrect) {
+                score++;
+                button.classList.add('correct');
+                feedbackText.textContent = "Correct! Well done!";
+                feedbackText.style.color = '#22c55e';
+            } else {
+                button.classList.add('incorrect');
+                feedbackText.innerHTML = `Not quite. The correct answer is: <strong>${currentQuestion.answer}</strong>`;
+                feedbackText.style.color = '#ef4444';
+                Array.from(optionsContainer.children).forEach(btn => {
+                    if (btn.textContent === currentQuestion.answer) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+            
+            explanationText.textContent = currentQuestion.explanation;
+            explanationText.classList.remove('hidden');
+            
+            const currentTotal = quizData.length;
+            const percentage = currentTotal > 0 ? Math.round((score / currentTotal) * 100) : 0;
+            scoreCounter.textContent = `Score: ${score}/${currentTotal} (${percentage}%)`;
+
+
+            nextBtn.classList.remove('hidden');
+            if (currentQuestionIndex === quizData.length - 1) {
+                nextBtn.textContent = 'Finish Quiz';
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
+                scoreCounter.textContent = `Score: ${score}/${quizData.length}`;
+            } else {
+                showEndScreen();
+            }
+        }
+        
+        function showEndScreen() {
+            quizScreen.classList.add('hidden');
+            endScreen.classList.remove('hidden');
+            const percentage = quizData.length > 0 ? Math.round((score / quizData.length) * 100) : 0;
+            finalScoreText.textContent = `${score} / ${quizData.length} (${percentage}%)`;
+        }
+
+        function restartQuiz() {
+            quizData = [];
+            nextBtn.textContent = 'Next';
+            endScreen.classList.add('hidden');
+            difficultyScreen.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
+
